@@ -1,0 +1,18 @@
+<div *ngIf="subject" class="container">
+  <app-input [color]="primaryColor" [isSearch]=true class="search" placeholder="Search Lesson..." (textChange)="search($event)"></app-input>
+  <mat-list class="list">
+    <div class="item" *ngFor="let lesson of filteredLessons" (click)="showLesson(lesson)">
+      <div class="menu-div">
+        <mat-icon class="menu-icon">school</mat-icon>
+        <button class="menu-button">{{lesson.name}}</button>
+      </div>
+    </div>
+  </mat-list>
+  <button mat-fab
+          color="primary"
+          class="create-lesson-button"
+          aria-label="Create Lesson"
+          (click)="openCreateLessonDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

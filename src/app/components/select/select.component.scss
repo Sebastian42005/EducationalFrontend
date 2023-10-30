@@ -1,0 +1,50 @@
+@import "src/styles.scss";
+
+.select {
+  width: 100%;
+  position: relative;
+
+  .button {
+    width: 100%;
+    height: 43px;
+    background: transparent;
+    cursor: pointer;
+    border: 2px solid $app-primary-color;
+    border-radius: 10px;
+  }
+
+  .select-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    top: calc(100% + 5px);
+    background-color: white;
+    border-radius: .25rem;
+    box-shadow:  0 2px 5px 0 rgba(0, 0, 0, .2);
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all .3s ease-in-out;
+
+    .option {
+      cursor: pointer;
+      width: 100%;
+      padding: 10px;
+
+      &:hover {
+        background-color: $app-primary-color;
+        color: white;
+      }
+    }
+  }
+
+  .select-menu-opened {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}

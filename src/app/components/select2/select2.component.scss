@@ -1,0 +1,79 @@
+@import "src/styles.scss";
+
+.select {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color);
+  border-radius: 10px;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    cursor: pointer;
+    height: 43px;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    color: black;
+    text-align: start;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+
+    mat-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .placeholder {
+    color: gray;
+  }
+
+  .spacer {
+    height: 2px;
+    width: 100%;
+    background-color: var(--color);
+  }
+
+  .select-menu {
+    width: 100%;
+    display: flex;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    align-items: center;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 150px;
+    flex-direction: column;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .option {
+      cursor: pointer;
+      width: 100%;
+      padding: 10px 10px 10px 25px;
+      font-size: 1rem;
+      transition: 150ms ease-in-out;
+
+      &:hover {
+        background-color: var(--color);
+        color: white;
+      }
+    }
+  }
+}

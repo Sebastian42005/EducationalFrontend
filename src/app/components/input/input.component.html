@@ -1,0 +1,10 @@
+<div [ngStyle]="{'border-color': color}">
+  <input
+    [placeholder]="placeholder"
+    (input)="onInputChange()"
+    [(ngModel)]="value"
+    [type]="getType()"
+  >
+  <mat-icon *ngIf="isSearch">search</mat-icon>
+  <mat-icon *ngIf="type === 'password'" (click)="changePasswordVisibility()">{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+</div>

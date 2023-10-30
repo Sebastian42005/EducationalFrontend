@@ -1,0 +1,124 @@
+@import "src/styles.scss";
+
+header {
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: $app-primary-color;
+  color: white;
+
+  .title-div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+
+    &:hover {
+      color: $app-secondary-color;
+    }
+
+    $icon-size: 2.2rem;
+
+    mat-icon {
+      width: $icon-size;
+      height: $icon-size;
+      transition: 200ms;
+      font-size: $icon-size;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      font-family: 'EB Garamond', serif;
+      cursor: pointer;
+      transition: 200ms;
+      letter-spacing: 1px;
+    }
+  }
+
+  .links {
+
+    .login-btn {
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        color: $app-secondary-color;
+      }
+    }
+
+    .profile-div {
+      cursor: pointer;
+      transition: 200ms;
+
+      &:hover {
+        color: $app-secondary-color;
+
+        div {
+          border: 2px solid $app-secondary-color;
+        }
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid white;
+
+        span {
+          font-size: 1.5rem;
+          line-height: 40px;
+          display: block;
+          letter-spacing: 1px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+app-dropdown-menu {
+  position: fixed;
+  top: 80px;
+  right: 40px;
+  pointer-events: none;
+  z-index: 100;
+  transition: 500ms;
+  opacity: 0;
+  transform: translateY(-20%);
+}
+
+.menu-opened {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.popup {
+  position: fixed;
+  z-index: 99999;
+  left: 50%;
+  top: 20px;
+  transition: 200ms;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-100%);
+}
+
+.show-popup {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

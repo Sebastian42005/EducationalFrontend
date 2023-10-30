@@ -1,0 +1,7 @@
+<div class="container">
+  <h1>Create Lesson</h1>
+  <app-input [color]="primaryColor" class="input" (textChange)="name = $event" placeholder="Name"></app-input>
+  <app-file text="Student PDF" accept="application/pdf" (fileChange)="studentFile = $event"></app-file>
+  <app-file text="Teacher PDF" accept="application/pdf" (fileChange)="teacherFile = $event"></app-file>
+  <app-button class="create-button" text="Create" icon="add" (click)="createLesson()"></app-button>
+</div>

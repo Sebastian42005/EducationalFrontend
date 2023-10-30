@@ -1,0 +1,60 @@
+@import "src/styles.scss";
+
+$select-color: $app-primary-color;
+$icon-size: 25px;
+
+.container {
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+
+  .file-select {
+    border: 2px solid $select-color;
+    color: $select-color;
+
+    mat-icon {
+      color: $select-color;
+    }
+
+    &:hover {
+      background-color: $select-color;
+      color: white;
+    }
+  }
+
+  .file-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+
+
+  .file-selected {
+    border: 2px solid $select-color;
+    color: $select-color;
+    overflow: hidden;
+
+    mat-icon {
+      width: $icon-size;
+      height: $icon-size;
+      font-size: $icon-size;
+      padding-right: 5px;
+    }
+
+    &:hover {
+      background-color: $select-color;
+      color: white;
+    }
+  }
+
+
+}

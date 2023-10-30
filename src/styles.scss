@@ -1,0 +1,110 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$app-primary-color: #4a785e;
+$app-accent-color: #f6F4c3;
+$app-secondary-color: #B4daa7;
+
+/* For use in src/lib/core/theming/_palette.scss */
+$primary-palette: (
+  50 : #e9efec,
+  100 : #c9d7cf,
+  200 : #a5bcaf,
+  300 : #80a18e,
+  400 : #658c76,
+  500 : #4a785e,
+  600 : #437056,
+  700 : #3a654c,
+  800 : #325b42,
+  900 : #224831,
+  A100 : #8effb8,
+  A200 : #5bff98,
+  A400 : #28ff78,
+  A700 : #0eff68,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$accent-palette: (
+  50 : #fefef8,
+  100 : #fcfced,
+  200 : #fbfae1,
+  300 : #f9f7d5,
+  400 : #f7f6cc,
+  500 : #f6f4c3,
+  600 : #f5f3bd,
+  700 : #f3f1b5,
+  800 : #f2efae,
+  900 : #efeca1,
+  A100 : #ffffff,
+  A200 : #ffffff,
+  A400 : #ffffff,
+  A700 : #ffffff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$dark-theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette($primary-palette),
+    accent: mat.define-palette($accent-palette),
+  ),
+));
+
+// Apply the dark theme by default
+@include mat.all-component-themes($dark-theme);
+@include mat.autocomplete-theme($dark-theme);
+@include mat.button-theme($dark-theme);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-icon {
+  font-family: 'Material Icons', serif !important;
+}
+
+.mdc-tab__text-label {
+  font-size: 1.1rem;
+}
+
+h1 {
+  margin: 0;
+  font-weight: normal;
+  font-size: 2rem;
+}

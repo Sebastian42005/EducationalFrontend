@@ -1,0 +1,81 @@
+@import "src/styles.scss";
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding-top: 5px;
+
+  .title-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+
+    .name {
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .role {
+      color: gray;
+    }
+  }
+
+  .list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item-splitter-div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .splitter {
+        height: 1px;
+        width: 90%;
+        background-color: lightgray;
+      }
+
+      .item {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 0;
+        gap: 10px;
+        cursor: pointer;
+
+        mat-icon {
+          padding: 8px;
+          width: 22px;
+          height: 22px;
+          font-size: 22px;
+          margin-left: 10px;
+          border-radius: 50%;
+          background-color: lightgray;
+          color: $app-primary-color;
+        }
+
+        span {
+          font-size: 1rem;
+          margin-right: 10px;
+        }
+
+        &:hover {
+
+          span {
+            color: $app-primary-color;
+          }
+        }
+      }
+    }
+  }
+}

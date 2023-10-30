@@ -1,0 +1,60 @@
+@import "src/styles.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .title-div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 99.5vw;
+    border-top: 1px solid $app-accent-color;
+    background: $app-primary-color;
+    height: 50px;
+    padding: 5px;
+
+    $icon-size: 2.2rem;
+
+    mat-icon {
+      width: $icon-size;
+      height: $icon-size;
+      font-size: $icon-size;
+      color: $app-accent-color;
+      margin-left: 15px;
+      cursor: pointer;
+      transition: 200ms;
+
+      &:hover {
+        color: $app-secondary-color;
+      }
+    }
+
+    h1 {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.2rem;
+      color: $app-accent-color;
+      font-family: 'EB Garamond', serif;
+    }
+  }
+
+  .tab-group {
+    width: 100%;
+    overflow: hidden;
+
+    .tab {
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+
+  ::ng-deep mat-tab-body {
+    height: 77vh;
+    overflow-y: hidden;
+  }
+
+}

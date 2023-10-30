@@ -1,0 +1,27 @@
+@import "src/styles";
+
+.container {
+
+  mat-tab-group {
+    width: 30vw;
+  }
+
+  div {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+
+    app-input, app-select, app-select2 {
+      width: 60%;
+    }
+
+    app-button {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      width: 50%;
+    }
+  }
+}

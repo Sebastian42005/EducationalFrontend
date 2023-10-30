@@ -1,0 +1,9 @@
+<div class="container">
+  <label [for]="text">
+    <div [ngClass]="selectedFile ? 'file-selected' : 'file-select'">
+      <span class="file-text">{{text}}</span>
+      <mat-icon *ngIf="selectedFile">check</mat-icon>
+    </div>
+  </label>
+  <input [id]="text" type="file" [accept]="accept" [hidden]="true" (change)="pickFile($event)">
+</div>
