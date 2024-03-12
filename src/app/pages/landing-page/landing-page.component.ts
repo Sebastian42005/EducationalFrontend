@@ -28,7 +28,7 @@ export class LandingPageComponent implements OnInit {
     this.loadSubjects();
   }
 
-  getImage(id: string) {
+  getImage(id: number) {
     return baseUrl + '/subject/' + id + '/image';
   }
 

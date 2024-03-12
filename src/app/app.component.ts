@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "./dialogs/login/login.component";
 import {showMessageEmitter} from "./components/popup-info/popup-info.component";
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       if (isLoggedIn) {
         this.isLoggedIn = true;
       }
-    })
+    });
   }
 
   toggleMenu() {

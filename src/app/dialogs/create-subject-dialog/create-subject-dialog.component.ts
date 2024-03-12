@@ -20,7 +20,7 @@ export class CreateSubjectDialogComponent {
   createSubject() {
     if (this.file && this.name) {
       this.apiService.createSubject(this.name).subscribe(subject => {
-        this.apiService.addSubjectImage(subject.id, this.file!).subscribe(() => {
+        this.apiService.putImageToSubject(subject.id, this.file!).subscribe(() => {
           showMessageEmitter.emit({
             message: 'Subject created successfully',
             error: false

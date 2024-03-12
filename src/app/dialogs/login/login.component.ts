@@ -55,7 +55,7 @@ export class LoginComponent {
   }
 
   register() {
-    this.apiService.register(this.registerEmail, this.registerPassword, this.registerFirstName, this.registerLastName, this.role).subscribe(response => {
+    this.apiService.register(this.registerEmail, this.registerFirstName, this.registerLastName, this.registerPassword, this.role).subscribe(response => {
       showMessageEmitter.emit({
         message: 'Registration successful!',
         error: false,

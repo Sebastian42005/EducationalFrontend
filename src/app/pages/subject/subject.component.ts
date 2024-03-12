@@ -29,8 +29,8 @@ export class SubjectComponent implements OnInit {
     })
   }
 
-  loadSubject(id: string) {
-    this.apiService.getSubject(id).subscribe(subject => {
+  loadSubject(id: number) {
+    this.apiService.getSubjectById(id).subscribe(subject => {
       this.subject = subject;
       this.search('');
     });

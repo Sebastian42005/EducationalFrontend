@@ -22,7 +22,7 @@ export class LessonComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.apiService.getLesson(params['id']).subscribe(lesson => {
+      this.apiService.getLessonById(params['id']).subscribe(lesson => {
         this.lesson = lesson;
         this.teacherPDF = getLessonTeacherPDF(lesson.id, this.sanitizer);
         this.studentPDF = getLessonStudentPDF(lesson.id, this.sanitizer);

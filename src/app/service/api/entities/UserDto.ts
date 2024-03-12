@@ -1,7 +1,13 @@
+import {TeacherDto} from "./TeacherDto";
+import {StudentDto} from "./StudentDto";
+import {UserRole} from "./UserRole";
+
 export interface UserDto {
-  id: string;
+  id: number;
   email: string;
   firstName: string;
   lastName: string;
-  role: string;
+  role: UserRole;
+  teacher: TeacherDto;
+  student: StudentDto;
 }

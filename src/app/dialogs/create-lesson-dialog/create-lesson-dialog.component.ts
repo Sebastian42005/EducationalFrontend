@@ -14,10 +14,10 @@ export class CreateLessonDialogComponent {
   name = '';
   studentFile: File | undefined;
   teacherFile: File | undefined;
-  subjectId: string | undefined;
+  subjectId: number | undefined;
 
   constructor(private apiService: ApiService,
-              @Inject(MAT_DIALOG_DATA) data: string,
+              @Inject(MAT_DIALOG_DATA) data: number,
               private matDialogRef: MatDialogRef<CreateLessonDialogComponent>) {
     this.subjectId = data;
   }
