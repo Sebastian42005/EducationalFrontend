@@ -1,22 +1,31 @@
 <header>
-  <div class="title-div">
-    <h1 (click)="navigateToHome()">{{title}}</h1>
-  </div>
-  <div class="links">
-    <span class="login-btn" *ngIf="!isLoggedIn" (click)="login()">Login</span>
-    <div *ngIf="isLoggedIn" class="profile-div" (click)="toggleMenu()">
-      <img *ngIf="!profileImgFailed" (error)="handleProfileImgError()"
-           src="https://images3.alphacoders.com/132/1328226.png" alt="Error Image">
-      <div *ngIf="profileImgFailed && user">
-        <span>{{user.firstName.charAt(0) + user.lastName.charAt(0) | uppercase}}</span>
-      </div>
+    <div class="title-div">
+        <h1 (click)="navigateToHome()">{{ title }}</h1>
     </div>
-  </div>
+    <div class="links">
+        @if (!isLoggedIn) {
+            <span class="login-btn" (click)="login()">Login</span>
+        }
+        @if (isLoggedIn) {
+            <div class="profile-div" (click)="toggleMenu()">
+                @if (!profileImgFailed) {
+                    <img (error)="handleProfileImgError()"
+                         src="https://images3.alphacoders.com/132/1328226.png" alt="Error Image">
+                }
+                @if (profileImgFailed && user) {
+                    <div>
+                        <span>{{ user.firstName.charAt(0) + user.lastName.charAt(0) | uppercase }}</span>
+                    </div>
+                }
+            </div>
+        }
+    </div>
 </header>
-<app-dropdown-menu *ngIf="isLoggedIn"
-                   [ngClass]="menuOpened ? 'menu-opened' : ''"
-                   [user]="user"
-                   (logout)="logout()">
-</app-dropdown-menu>
+@if (isLoggedIn) {
+    <app-dropdown-menu [ngClass]="menuOpened ? 'menu-opened' : ''"
+                       [user]="user"
+                       (logout)="logout()">
+    </app-dropdown-menu>
+}
 <router-outlet></router-outlet>
 <app-popup-info [ngClass]="'popup ' + (showPopup ? 'show-popup' : '')" (onClose)="close()"></app-popup-info>

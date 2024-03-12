@@ -1,6 +1,8 @@
 <div class="select">
-  <button class="button" (click)="isOpen = !isOpen">{{selectedOption ? selectedOption : placeholder}}</button>
-  <div [ngClass]="isOpen ? 'select-menu select-menu-opened' : 'select-menu'">
-    <span class="option" *ngFor="let currentOption of options">{{currentOption}}</span>
-  </div>
+    <button class="button" (click)="isOpen = !isOpen">{{ selectedOption ? selectedOption : placeholder }}</button>
+    <div [ngClass]="isOpen ? 'select-menu select-menu-opened' : 'select-menu'">
+        @for (currentOption of options; track currentOption) {
+            <span class="option">{{ currentOption }}</span>
+        }
+    </div>
 </div>

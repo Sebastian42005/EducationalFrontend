@@ -1,10 +1,12 @@
 <div class="select">
-  <button [ngClass]="!selectedOption ? 'placeholder' : ''" (click)="isOpen = !isOpen">
-    <span>{{selectedOption ? selectedOption : placeholder}}</span>
-    <mat-icon>keyboard_arrow_down</mat-icon>
-  </button>
-  <div [@changeHeightAnimation]="isOpen ? 'open' : 'close'" class="select-menu">
-    <div class="spacer"></div>
-    <span (click)="onSelectOption(currentOption)" class="option" *ngFor="let currentOption of options">{{currentOption}}</span>
-  </div>
+    <button [ngClass]="!selectedOption ? 'placeholder' : ''" (click)="isOpen = !isOpen">
+        <span>{{ selectedOption ? selectedOption : placeholder }}</span>
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <div [@changeHeightAnimation]="isOpen ? 'open' : 'close'" class="select-menu">
+        <div class="spacer"></div>
+        @for (currentOption of options; track currentOption) {
+            <span (click)="onSelectOption(currentOption)" class="option">{{ currentOption }}</span>
+        }
+    </div>
 </div>

@@ -1,10 +1,14 @@
 <div [ngStyle]="{'border-color': color}">
-  <input
-    [placeholder]="placeholder"
-    (input)="onInputChange()"
-    [(ngModel)]="value"
-    [type]="getType()"
-  >
-  <mat-icon *ngIf="isSearch">search</mat-icon>
-  <mat-icon *ngIf="type === 'password'" (click)="changePasswordVisibility()">{{passwordVisible ? 'visibility' : 'visibility_off'}}</mat-icon>
+    <input
+            [placeholder]="placeholder"
+            (input)="onInputChange()"
+            [(ngModel)]="value"
+            [type]="getType()"
+    >
+    @if (isSearch) {
+        <mat-icon>search</mat-icon>
+    }
+    @if (type === 'password') {
+        <mat-icon (click)="changePasswordVisibility()">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
+    }
 </div>

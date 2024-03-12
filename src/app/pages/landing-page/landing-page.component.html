@@ -1,17 +1,19 @@
 <div class="container">
-  <div class="list">
-    <div class="item" *ngFor="let subject of subjectList" (click)="showSubject(subject)">
-      <div class="image-wrapper">
-        <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
-      </div>
-      <span>{{subject.name}}</span>
+    <div class="list">
+        @for (subject of subjectList; track subject.id) {
+            <div class="item" (click)="showSubject(subject)">
+                <div class="image-wrapper">
+                    <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
+                </div>
+                <span>{{ subject.name }}</span>
+            </div>
+        }
     </div>
-  </div>
-  <button mat-fab
-          color="primary"
-          class="create-subject-button"
-          aria-label="Create Subject"
-          (click)="openCreateSubjectDialog()">
-    <mat-icon>add</mat-icon>
-  </button>
+    <button mat-fab
+            color="primary"
+            class="create-subject-button"
+            aria-label="Create Subject"
+            (click)="openCreateSubjectDialog()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

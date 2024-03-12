@@ -1,15 +1,19 @@
-<div *ngIf="user" class="dropdown">
-  <div class="title-div">
-    <h2 class="name">{{user.firstName + ' ' + user.lastName}}</h2>
-    <span class="role">{{user.role}}</span>
-  </div>
-  <div class="list">
-    <div class="item-splitter-div" *ngFor="let item of items" (click)="item.action()">
-      <div class="splitter"></div>
-      <div class="item">
-        <mat-icon>{{item.icon}}</mat-icon>
-        <span>{{item.text}}</span>
-      </div>
+@if (user) {
+    <div class="dropdown">
+        <div class="title-div">
+            <h2 class="name">{{ user.firstName + ' ' + user.lastName }}</h2>
+            <span class="role">{{ user.role }}</span>
+        </div>
+        <div class="list">
+            @for (item of items; track item.text) {
+                <div class="item-splitter-div" (click)="item.action()">
+                    <div class="splitter"></div>
+                    <div class="item">
+                        <mat-icon>{{ item.icon }}</mat-icon>
+                        <span>{{ item.text }}</span>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-  </div>
-</div>
+}
