@@ -1,0 +1,11 @@
+.container {
+  padding: 20px;
+
+  div {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: end;
+  }
+}
