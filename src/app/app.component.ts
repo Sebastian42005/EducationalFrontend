@@ -81,6 +81,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    this.menuOpened = false;
     localStorage.clear();
     this.isLoggedIn = false;
     this.router.navigate(['']).then();

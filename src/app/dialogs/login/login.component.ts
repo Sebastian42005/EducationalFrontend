@@ -49,7 +49,12 @@ export class LoginComponent {
         message: 'Login successful!',
         error: false,
       })
-      this.router.navigate(['/home']).then();
+      console.log(response.role)
+      if (response.role === "ROLE_ADMIN") {
+        this.router.navigate(['/admin']).then();
+      } else {
+        this.router.navigate(['/home']).then();
+      }
       this.matDialogRef.close(true);
     });
   }

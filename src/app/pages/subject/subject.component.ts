@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SubjectDto} from "../../service/api/entities/SubjectDto";
 import {ApiService} from "../../service/api/api.service";
@@ -16,6 +16,7 @@ export class SubjectComponent implements OnInit {
   subject: SubjectDto | undefined;
   primaryColor = primaryColor;
   filteredLessons: LessonDto[] = [];
+  @Input() id: number;
 
   constructor(private activateRoute: ActivatedRoute,
               private apiService: ApiService,
@@ -24,9 +25,13 @@ export class SubjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(param => {
-      this.loadSubject(param['id']);
-    })
+    if (!this.id) {
+      this.activateRoute.params.subscribe(param => {
+        this.loadSubject(param['id']);
+      })
+    }else {
+      this.loadSubject(this.id);
+    }
   }
 
   loadSubject(id: number) {
@@ -51,7 +56,7 @@ export class SubjectComponent implements OnInit {
       } else {
         this.filteredLessons = this.subject?.lessons;
       }
-    }else {
+    } else {
       this.filteredLessons = [];
     }
   }

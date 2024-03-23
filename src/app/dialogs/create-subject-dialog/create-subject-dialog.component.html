@@ -1,6 +1,7 @@
 <div class="container">
   <h1>Create Subject</h1>
   <app-input [color]="primaryColor" class="input" (textChange)="name = $event" placeholder="Name"></app-input>
-  <input type="file" accept="application/png, application/webp, application/jpeg" placeholder="Image" (change)="pickFile($event)">
+  <app-file text="Image" accept="application/png, application/webp, application/jpeg"
+            (fileChange)="file = $event"></app-file>
   <app-button class="create-button" text="Create" icon="add" (click)="createSubject()"></app-button>
 </div>

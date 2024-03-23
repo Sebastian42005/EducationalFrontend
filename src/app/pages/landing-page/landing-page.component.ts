@@ -13,17 +13,9 @@ import {Router} from "@angular/router";
 export class LandingPageComponent implements OnInit {
   subjectList: SubjectDto[] = [];
 
-  constructor(private matDialog: MatDialog,
-              private apiService: ApiService,
+  constructor(private apiService: ApiService,
               private router: Router) {
   }
-
-  openCreateSubjectDialog() {
-    this.matDialog.open(CreateSubjectDialogComponent).afterClosed().subscribe(() => {
-      this.loadSubjects();
-    });
-  }
-
   ngOnInit(): void {
     this.loadSubjects();
   }

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './dialogs/login/login.component';
-import {MatTabsModule} from "@angular/material/tabs";
+import {MatTab, MatTabGroup, MatTabsModule} from "@angular/material/tabs";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { InputComponent } from './components/input/input.component';
@@ -28,6 +28,11 @@ import { CreateLessonDialogComponent } from './dialogs/create-lesson-dialog/crea
 import {MatMenuModule} from "@angular/material/menu";
 import { FileComponent } from './components/file/file.component';
 import { LessonComponent } from './pages/lesson/lesson.component';
+import {AdminComponent} from "./pages/admin/admin.component";
+import {AdminUserComponent} from "./pages/admin/admin-user/admin-user.component";
+import {AdminSubjectsComponent} from "./pages/admin/admin-subjects/admin-subjects.component";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -42,27 +47,37 @@ import { LessonComponent } from './pages/lesson/lesson.component';
     DropdownMenuComponent,
     CreateSubjectDialogComponent,
     LandingPageComponent,
+    AdminComponent,
+    AdminUserComponent,
+    AdminSubjectsComponent,
     SubjectComponent,
     CreateLessonDialogComponent,
     FileComponent,
     LessonComponent,
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatInputModule,
-        HttpClientModule,
-        FormsModule,
-        MatIconModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatListModule,
-        MatMenuModule,
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatInputModule,
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatListModule,
+    MatMenuModule,
+  ],
   providers: [],
+  exports: [
+    SubjectComponent,
+    CreateSubjectDialogComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

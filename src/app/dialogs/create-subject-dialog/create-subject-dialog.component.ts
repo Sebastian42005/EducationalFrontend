@@ -30,11 +30,4 @@ export class CreateSubjectDialogComponent {
       });
     }
   }
-
-  pickFile(event: any) {
-    const files = event.target.files;
-    if (files.length > 0) {
-      this.file = files[0];
-    }
-  }
 }

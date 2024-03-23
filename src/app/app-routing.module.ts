@@ -5,6 +5,7 @@ import {LoginComponent} from "./dialogs/login/login.component";
 import {LandingPageComponent} from "./pages/landing-page/landing-page.component";
 import {SubjectComponent} from "./pages/subject/subject.component";
 import {LessonComponent} from "./pages/lesson/lesson.component";
+import {AdminComponent} from "./pages/admin/admin.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'home', component: LandingPageComponent },
   { path: 'subject/:id', component: SubjectComponent },
   { path: 'lesson/:id', component: LessonComponent },
+  { path: 'admin', component: AdminComponent },
 ];
 
 @NgModule({
