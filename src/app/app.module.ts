@@ -33,6 +33,8 @@ import {AdminUserComponent} from "./pages/admin/admin-user/admin-user.component"
 import {AdminSubjectsComponent} from "./pages/admin/admin-subjects/admin-subjects.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {AdminUserEditComponent} from "./pages/admin/admin-user/admin-user-edit/admin-user-edit.component";
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     CreateLessonDialogComponent,
     FileComponent,
     LessonComponent,
+    AdminUserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     FormsModule,
     MatTableModule,
     MatPaginatorModule,
+    MatCheckbox,
     MatIconModule,
     MatTabsModule,
     MatSelectModule,
@@ -76,7 +80,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
   providers: [],
   exports: [
     SubjectComponent,
-    CreateSubjectDialogComponent
+    CreateSubjectDialogComponent,
+    InputComponent
   ],
   bootstrap: [AppComponent]
 })

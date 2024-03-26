@@ -1,0 +1,33 @@
+@if (user) {
+  <div class="container">
+    <div class="input-div">
+      <app-input [color]="primaryColor" placeholder="Email" [value]="user.email"
+                 (textChange)="user.email = $event" [showInfo]="true"></app-input>
+      <app-input [color]="primaryColor" placeholder="Firstname" [value]="user.firstName"
+                 (textChange)="user.firstName = $event" [showInfo]="true"></app-input>
+      <app-input [color]="primaryColor" placeholder="Lastname" [value]="user.lastName"
+                 (textChange)="user.lastName = $event" [showInfo]="true"></app-input>
+      <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
+                   [options]="options" [selectedOption]="getUserRoleAsString()" [showInfo]="true"></app-select2>
+    </div>
+    @if (subjects) {
+      <div class="subject-div">
+        @for (subject of subjects; track subject.subject.id) {
+          <div class="subject" (click)="toggleSubject(subject)">
+            <div class="image-wrapper">
+              <img [src]="getImage(subject.subject.id)" [alt]="subject.subject.name + ' Image'">
+            </div>
+            <div style="display: flex; flex-direction: row; align-items: center">
+              <span>{{ subject.subject.name }}</span>
+              <mat-checkbox [checked]="subject.isActivated"></mat-checkbox>
+            </div>
+            @if (!subject.isActivated) {
+              <div class="overlay"></div>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+  <button class="update-button" mat-raised-button color="primary" (click)="updateUser()">Update User</button>
+}

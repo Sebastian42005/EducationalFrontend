@@ -1,14 +1,22 @@
-<div [ngStyle]="{'border-color': color}">
+<div class="container">
+  @if (showInfo && value != '') {
+    <div class="info-div">
+      <div class="placeholder"></div>
+      <span class="info">{{ placeholder }}</span>
+    </div>
+  }
+  <div class="input-div" [ngStyle]="{'border-color': color}">
     <input
-            [placeholder]="placeholder"
-            (input)="onInputChange()"
-            [(ngModel)]="value"
-            [type]="getType()"
+      [placeholder]="placeholder"
+      (input)="onInputChange()"
+      [(ngModel)]="value"
+      [type]="getType()"
     >
     @if (isSearch) {
-        <mat-icon>search</mat-icon>
+      <mat-icon>search</mat-icon>
     }
     @if (type === 'password') {
-        <mat-icon (click)="changePasswordVisibility()">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
+      <mat-icon (click)="changePasswordVisibility()">{{ passwordVisible ? 'visibility' : 'visibility_off' }}</mat-icon>
     }
+  </div>
 </div>

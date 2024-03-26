@@ -6,6 +6,7 @@ import {LandingPageComponent} from "./pages/landing-page/landing-page.component"
 import {SubjectComponent} from "./pages/subject/subject.component";
 import {LessonComponent} from "./pages/lesson/lesson.component";
 import {AdminComponent} from "./pages/admin/admin.component";
+import {AdminUserEditComponent} from "./pages/admin/admin-user/admin-user-edit/admin-user-edit.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'subject/:id', component: SubjectComponent },
   { path: 'lesson/:id', component: LessonComponent },
   { path: 'admin', component: AdminComponent },
+  { path: 'admin/user/:id', component: AdminUserEditComponent },
 ];
 
 @NgModule({

@@ -13,13 +13,14 @@ export class CreateSubjectDialogComponent {
   name = '';
   primaryColor = primaryColor;
   file: File | undefined;
+  free = false;
 
   constructor(private apiService: ApiService, private matDialogRef: MatDialogRef<CreateSubjectDialogComponent>) {
   }
 
   createSubject() {
     if (this.file && this.name) {
-      this.apiService.createSubject(this.name).subscribe(subject => {
+      this.apiService.createSubject(this.name, this.free).subscribe(subject => {
         this.apiService.putImageToSubject(subject.id, this.file!).subscribe(() => {
           showMessageEmitter.emit({
             message: 'Subject created successfully',

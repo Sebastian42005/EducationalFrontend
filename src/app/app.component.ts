@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent} from "./dialogs/login/login.component";
+import {LoginComponent, loginEmitter} from "./dialogs/login/login.component";
 import {showMessageEmitter} from "./components/popup-info/popup-info.component";
 import {Router} from "@angular/router";
 import {ApiService} from "./service/api/api.service";
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
     this.popupSubscribe();
     this.getOwnUser();
     this.headerTitleEmitter();
+    loginEmitter.subscribe(() => this.getOwnUser());
   }
 
   getOwnUser() {

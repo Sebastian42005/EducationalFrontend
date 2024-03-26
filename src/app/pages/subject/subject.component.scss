@@ -2,6 +2,18 @@
 
 .container {
 
+  $icon-size: 1.8rem;
+
+  .back-arrow {
+    margin-left: 20px;
+    margin-bottom: -5px;
+    cursor: pointer;
+    font-size: $icon-size;
+    width: $icon-size;
+    height: $icon-size;
+    color: $app-primary-color;
+  }
+
   .search {
     display: block;
     width: 15vw;
@@ -28,25 +40,49 @@
       .menu-div {
         display: flex;
         flex-direction: row;
-        gap: 10px;
-        padding: 10px;
+        justify-content: space-between;
         align-items: center;
-        cursor: pointer;
 
-        .menu-icon {
-          width: 30px;
-          height: 30px;
-          font-size: 30px;
-        }
-
-        .menu-button {
-          background: none;
-          border: none;
-          font-size: 1rem;
+        .info-div {
+          width: 95%;
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          padding: 10px;
+          align-items: center;
           cursor: pointer;
 
-          &:focus {
-            outline: none;
+          .menu-icon {
+            width: 30px;
+            height: 30px;
+            font-size: 30px;
+          }
+
+          .menu-button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+
+        .actions-div {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          padding-right: 20px;
+
+          $icon-size: 1.7rem;
+
+          mat-icon {
+            width: $icon-size;
+            height: $icon-size;
+            font-size: $icon-size;
+            cursor: pointer;
           }
         }
       }

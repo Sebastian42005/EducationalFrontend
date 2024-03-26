@@ -1,0 +1,106 @@
+@import "src/styles.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 30px;
+
+  .input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+    margin: 20px;
+
+    app-select2 {
+      width: 99%;
+    }
+  }
+
+  .subject-div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    .subject {
+      position: relative;
+      display: flex;
+      height: 250px;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+      border-radius: 20px;
+      padding-bottom: 10px;
+      background-color: white;
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      transition: 300ms;
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      }
+
+      .overlay {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .overlay::before,
+      .overlay::after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        height: 7px;
+        background-color: rgba(139, 0, 0, 0.76);
+      }
+
+      .overlay::before {
+        transform: rotate(45deg);
+      }
+
+      .overlay::after {
+        transform: rotate(-45deg);
+      }
+
+      .image-wrapper {
+        width: 90%;
+        height: 200px;
+        margin-top: 10px;
+        border-radius: 20px;
+        overflow: hidden;
+
+        img {
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          transition: 300ms ease-in-out;
+          object-fit: cover;
+        }
+      }
+
+      span {
+        font-size: 1.5rem;
+        transition: 300ms ease-in-out;
+        color: $app-primary-color;
+      }
+
+      mat-checkbox {
+        scale: 1.2;
+      }
+    }
+  }
+}
+
+.update-button {
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  transform: translateX(-50%);
+}

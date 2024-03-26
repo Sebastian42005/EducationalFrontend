@@ -11,6 +11,7 @@ import {showMessageEmitter} from "../../../components/popup-info/popup-info.comp
 import {ApiService} from "../../../service/api/api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-user',
@@ -23,7 +24,9 @@ export class AdminUserComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private apiService: ApiService, private matDialog: MatDialog) {
+  constructor(private apiService: ApiService,
+              private matDialog: MatDialog,
+              private router: Router) {
   }
 
   applyFilter(event: Event) {
@@ -47,7 +50,7 @@ export class AdminUserComponent implements OnInit {
     if (user) {
       this.matDialog.open(ConfirmDialogComponent, {
         data: {
-          text: "Are you sure you want to delete the user " + user.email + "?",
+          text: "Are you sure you want to delete the user \"" + user.email + "\"?",
           cancel: "Cancel",
           confirm: "Delete"
         }
@@ -63,5 +66,10 @@ export class AdminUserComponent implements OnInit {
         }
       })
     }
+  }
+
+  showUser(id: number) {
+    console.log(id)
+    this.router.navigate(["admin", "user", id]).then();
   }
 }

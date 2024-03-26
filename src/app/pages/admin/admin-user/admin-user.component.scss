@@ -8,4 +8,13 @@
   .delete-icon {
     color: darkred;
   }
+
+  .mat-mdc-row {
+    cursor: pointer;
+    transition: 200ms;
+
+    &:hover {
+      background: #e5e5e5;
+    }
+  }
 }

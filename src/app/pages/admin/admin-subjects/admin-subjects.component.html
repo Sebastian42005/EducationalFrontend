@@ -25,5 +25,5 @@
   </button>
 </div>
 } @else {
-  <app-subject [id]="selectedSubject.id"></app-subject>
+  <app-subject [id]="selectedSubject.id" [hasBackArrow]="true" (onBackArrowClick)="selectedSubject = null"></app-subject>
 }

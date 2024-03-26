@@ -1,23 +1,32 @@
 @if (subject) {
-    <div class="container">
-        <app-input [color]="primaryColor" [isSearch]=true class="search" placeholder="Search Lesson..."
-                   (textChange)="search($event)"></app-input>
-        <mat-list class="list">
-            @for (lesson of filteredLessons; track lesson.id) {
-                <div class="item" (click)="showLesson(lesson)">
-                    <div class="menu-div">
-                        <mat-icon class="menu-icon">school</mat-icon>
-                        <button class="menu-button">{{ lesson.name }}</button>
-                    </div>
-                </div>
-            }
-        </mat-list>
-        <button mat-fab
-                color="primary"
-                class="create-lesson-button"
-                aria-label="Create Lesson"
-                (click)="openCreateLessonDialog()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+  <div class="container">
+    <mat-icon class="back-arrow" (click)="onBackArrowClick.emit()">arrow_back</mat-icon>
+    <app-input [color]="primaryColor" [isSearch]=true class="search" placeholder="Search Lesson..."
+               (textChange)="search($event)"></app-input>
+    <mat-list class="list">
+      @for (lesson of filteredLessons; track lesson.id) {
+        <div class="item">
+          <div class="menu-div">
+            <div class="info-div" (click)="showLesson(lesson)">
+              <mat-icon class="menu-icon">school</mat-icon>
+              <button class="menu-button">{{ lesson.name }}</button>
+            </div>
+            <div class="actions-div">
+              <mat-icon style="color: gray">edit</mat-icon>
+              <mat-icon style="color: darkred" (click)="deleteLesson(lesson)">delete</mat-icon>
+            </div>
+          </div>
+        </div>
+      }
+    </mat-list>
+    @if (user.role === UserRole.ADMIN) {
+      <button mat-fab
+              color="primary"
+              class="create-lesson-button"
+              aria-label="Create Lesson"
+              (click)="openCreateLessonDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    }
+  </div>
 }

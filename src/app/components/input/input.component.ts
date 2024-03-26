@@ -7,11 +7,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class InputComponent {
   @Input() placeholder: string = '';
-  value: string = '';
+  @Input() value: string = '';
   @Input() type: string = 'text';
   @Input() isSearch: boolean = false;
   @Output() textChange = new EventEmitter<string>();
   @Input() color: string = 'black';
+  @Input() showInfo: boolean = false;
   passwordVisible: boolean = false;
 
   onInputChange() {

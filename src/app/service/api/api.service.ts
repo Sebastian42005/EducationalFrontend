@@ -5,6 +5,7 @@ import {StudentDto} from "./entities/StudentDto";
 import {UserDto} from "./entities/UserDto";
 import {UserRole} from "./entities/UserRole";
 import {SubjectDto} from "./entities/SubjectDto";
+import {LessonDto} from "./entities/LessonDto";
 
 
 @Injectable({
@@ -31,9 +32,12 @@ export class ApiService {
     });
   }
 
-// LessonController Requests
-  createLesson(lessonEntity: any, subjectId: number): Observable<any> {
-    return this.post<any>(`/lesson/${subjectId}`, lessonEntity);
+  // LessonController Requests
+  createLesson(lesson: string, subjectId: number): Observable<LessonDto> {
+    const lessonEntity = {
+      name: lesson
+    }
+    return this.post<LessonDto>(`/lesson/${subjectId}`, lessonEntity);
   }
 
   setLessonPDFs(id: number, studentFile: File, teacherFile: File): Observable<{ [key: string]: string }> {
@@ -73,9 +77,10 @@ export class ApiService {
   }
 
   // SubjectController Requests
-  createSubject(subject: string): Observable<any> {
+  createSubject(subject: string, free: boolean): Observable<any> {
     const subjectEntity: any = {
-      name: subject
+      name: subject,
+      free: free
     }
     return this.post<any>(`/subject`, subjectEntity);
   }
@@ -90,8 +95,12 @@ export class ApiService {
     return this.get<any>(`/subject/${id}/image`);
   }
 
-  getAllSubjects(): Observable<any[]> {
+  getAllSubjects(): Observable<SubjectDto[]> {
     return this.get<any[]>(`/subject`);
+  }
+
+  getAllNotFreeSubjects(): Observable<SubjectDto[]> {
+    return this.get<SubjectDto[]>(`/subject/not-free`);
   }
 
   getSubjectById(id: number): Observable<any> {
@@ -124,12 +133,20 @@ export class ApiService {
     return this.get<UserDto>("/user/own");
   }
 
+  getUser(id: number):Observable<UserDto> {
+    return this.get<UserDto>(`/user/${id}`)
+  }
+
   getAllUsers(): Observable<UserDto[]> {
     return this.get<UserDto[]>("/user");
   }
 
   deleteUser(id: number): Observable<any> {
     return this.delete("/user/" + id)
+  }
+
+  updateUser(user: UserDto): Observable<UserDto> {
+    return this.put("/user", user)
   }
 
   private get<T>(url: string): Observable<T> {

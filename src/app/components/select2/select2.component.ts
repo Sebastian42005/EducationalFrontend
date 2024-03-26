@@ -29,8 +29,8 @@ export class Select2Component implements AfterViewInit {
   @Input() placeholder = '';
   @Output() selectedOptionChange = new EventEmitter<string>();
   @Input() color = 'black';
-  selectedOption: string = '';
-  canAnimate = false;
+  @Input() selectedOption: string = '';
+  @Input() showInfo = false;
   isOpen = false;
 
   constructor(private elementRef: ElementRef) {}

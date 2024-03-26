@@ -14,7 +14,7 @@ import {showMessageEmitter} from "../../../components/popup-info/popup-info.comp
 })
 export class AdminSubjectsComponent implements OnInit {
   subjectList: SubjectDto[] = [];
-  selectedSubject: SubjectDto | undefined;
+  selectedSubject: SubjectDto | null;
 
   constructor(private matDialog: MatDialog,
               private apiService: ApiService,
@@ -43,7 +43,7 @@ export class AdminSubjectsComponent implements OnInit {
     if (subject) {
       this.matDialog.open(ConfirmDialogComponent, {
         data: {
-          text: "Are you sure you want to delete the subject " + subject.name + "?",
+          text: "Are you sure you want to delete the subject \"" + subject.name + "\"?",
           cancel: "Cancel",
           confirm: "Delete"
         }
