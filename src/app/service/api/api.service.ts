@@ -1,11 +1,11 @@
 import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {StudentDto} from "./entities/StudentDto";
 import {UserDto} from "./entities/UserDto";
-import {UserRole} from "./entities/UserRole";
 import {SubjectDto} from "./entities/SubjectDto";
 import {LessonDto} from "./entities/LessonDto";
+import {WorkshopDto} from "./entities/WorkshopDto";
 
 
 @Injectable({
@@ -77,18 +77,23 @@ export class ApiService {
   }
 
   // SubjectController Requests
-  createSubject(subject: string, free: boolean): Observable<any> {
+  createSubject(subject: string, description: string, free: boolean): Observable<any> {
     const subjectEntity: any = {
       name: subject,
+      description: description,
       free: free
     }
     return this.post<any>(`/subject`, subjectEntity);
   }
 
+  updateSubject(subject: SubjectDto) {
+    return this.put(`/subject`, subject);
+  }
+
   putImageToSubject(id: number, image: File): Observable<{ message: string }> {
     const formData = new FormData();
     formData.append('file', image);
-    return this.put<{ message: string}>(`/subject/${id}/image`, formData);
+    return this.put<{ message: string }>(`/subject/${id}/image`, formData);
   }
 
   getImageFromSubject(id: number): Observable<any> {
@@ -97,6 +102,10 @@ export class ApiService {
 
   getAllSubjects(): Observable<SubjectDto[]> {
     return this.get<any[]>(`/subject`);
+  }
+
+  getAllSubjectsNoAuth(): Observable<SubjectDto[]> {
+    return this.get<any[]>(`/subject/no-auth`);
   }
 
   getAllNotFreeSubjects(): Observable<SubjectDto[]> {
@@ -133,7 +142,7 @@ export class ApiService {
     return this.get<UserDto>("/user/own");
   }
 
-  getUser(id: number):Observable<UserDto> {
+  getUser(id: number): Observable<UserDto> {
     return this.get<UserDto>(`/user/${id}`)
   }
 
@@ -147,6 +156,35 @@ export class ApiService {
 
   updateUser(user: UserDto): Observable<UserDto> {
     return this.put("/user", user)
+  }
+
+  getUserProfileImage(id: number): string {
+    return baseUrl + `/user/${id}/profile-image`;
+  }
+
+  setUserProfileImage(id: number, image: File): Observable<{ message: string }> {
+    const formData = new FormData();
+    formData.append('file', image);
+    return this.put<{ message: string }>(`/user/${id}/profile-image`, formData);
+  }
+
+// WorkshopController Requests
+  bookWorkshop(subject: SubjectDto, date: string, schoolName: string, message: string): Observable<any> {
+    console.log(subject, date, schoolName, message)
+    return this.post<WorkshopDto>(`/workshop/book`, {
+      subject: subject,
+      date: date,
+      school: schoolName,
+      message: message
+    });
+  }
+
+  acceptWorkshop(id: number): Observable<any> {
+    return this.put(`/workshop/accept/${id}`, null);
+  }
+
+  getAllWorkshops(): Observable<WorkshopDto[]> {
+    return this.get<WorkshopDto[]>(`/workshop/`);
   }
 
   private get<T>(url: string): Observable<T> {

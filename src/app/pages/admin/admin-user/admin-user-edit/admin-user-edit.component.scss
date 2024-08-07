@@ -4,23 +4,85 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 50px;
   margin: 10px 30px;
 
   .input-div {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 10px;
     width: 30%;
     margin: 20px;
 
-    app-select2 {
-      width: 99%;
+    app-input {
+      width: 100%;
     }
+
+    app-select2 {
+      width: 99.5%;
+      margin-left: -10px;
+    }
+  }
+
+  .students-div {
+
+    .search-div {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+      border: 2px solid $app-primary-color;
+      border-radius: 10px;
+      padding: 3px;
+
+      input {
+        width: 100%;
+        border: none;
+        font-size: 1rem;
+        padding: 10px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      $mat-icon-size: 2rem;
+      mat-icon {
+        font-size: $mat-icon-size;
+        width: 2.3rem;
+        height: $mat-icon-size;
+        color: $app-primary-color;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .student-list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 15px;
+      gap: 10px;
+
+      .student {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        font-size: 1.3rem;
+        align-items: center;
+        cursor: pointer;
+
+        mat-checkbox {
+          margin-left: auto;
+        }
+      }
+    }
+
   }
 
   .subject-div {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
 
     .subject {

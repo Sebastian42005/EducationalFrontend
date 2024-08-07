@@ -1,16 +1,12 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource, MatTableModule} from "@angular/material/table";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatIcon} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";
-import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
-import {MatSort, MatSortModule} from "@angular/material/sort";
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 import {UserDto} from "../../../service/api/entities/UserDto";
 import {ConfirmDialogComponent} from "../../../dialogs/confirm-dialog/confirm-dialog.component";
 import {showMessageEmitter} from "../../../components/popup-info/popup-info.component";
 import {ApiService} from "../../../service/api/api.service";
 import {MatDialog} from "@angular/material/dialog";
-import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {Router} from "@angular/router";
 
 @Component({
@@ -69,7 +65,6 @@ export class AdminUserComponent implements OnInit {
   }
 
   showUser(id: number) {
-    console.log(id)
     this.router.navigate(["admin", "user", id]).then();
   }
 }

@@ -61,6 +61,10 @@ export class AdminSubjectsComponent implements OnInit {
     }
   }
 
+  editSubject(subject: SubjectDto) {
+    this.router.navigate(['admin/subject', subject.id]).then();
+  }
+
   private loadSubjects() {
     this.apiService.getAllSubjects().subscribe(subjects => {
       this.subjectList = subjects;

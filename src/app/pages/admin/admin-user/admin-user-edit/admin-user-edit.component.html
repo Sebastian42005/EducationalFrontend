@@ -1,6 +1,7 @@
 @if (user) {
   <div class="container">
     <div class="input-div">
+      <app-profile-image [size]="70" [user]="user" [darkMode]="false"></app-profile-image>
       <app-input [color]="primaryColor" placeholder="Email" [value]="user.email"
                  (textChange)="user.email = $event" [showInfo]="true"></app-input>
       <app-input [color]="primaryColor" placeholder="Firstname" [value]="user.firstName"
@@ -10,7 +11,23 @@
       <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
                    [options]="options" [selectedOption]="getUserRoleAsString()" [showInfo]="true"></app-select2>
     </div>
-    @if (subjects) {
+    @if (user.teacher) {
+      <div class="students-div">
+        <div class="search-div">
+          <input placeholder="Search..." [(ngModel)]="search" (ngModelChange)="filterStudents()">
+          <mat-icon>search</mat-icon>
+        </div>
+        <div class="student-list">
+          @for (student of filteredStudents; track student.user.id) {
+            <div class="student" (click)="toggleStudent(student)">
+              <app-profile-image [darkMode]="false" [user]="student.user"></app-profile-image>
+              <span>{{ student.user.firstName + ' ' + student.user.lastName }}</span>
+              <mat-checkbox color="primary" [checked]="student.isActivated"></mat-checkbox>
+            </div>
+            <div style="width: 100%; height: 1px; background: gray"></div>
+          }
+        </div>
+      </div>
       <div class="subject-div">
         @for (subject of subjects; track subject.subject.id) {
           <div class="subject" (click)="toggleSubject(subject)">
@@ -19,7 +36,6 @@
             </div>
             <div style="display: flex; flex-direction: row; align-items: center">
               <span>{{ subject.subject.name }}</span>
-              <mat-checkbox [checked]="subject.isActivated"></mat-checkbox>
             </div>
             @if (!subject.isActivated) {
               <div class="overlay"></div>

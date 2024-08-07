@@ -5,6 +5,7 @@ import {showMessageEmitter} from "./components/popup-info/popup-info.component";
 import {Router} from "@angular/router";
 import {ApiService} from "./service/api/api.service";
 import {UserDto} from "./service/api/entities/UserDto";
+import {UserRole} from "./service/api/entities/UserRole";
 
 @Component({
   selector: 'app-root',
@@ -71,7 +72,11 @@ export class AppComponent implements OnInit {
 
   navigateToHome() {
     if (this.isLoggedIn) {
-      this.router.navigate(['home']).then();
+      if (this.user?.role == UserRole.ADMIN) {
+        this.router.navigate(['admin']).then();
+      } else {
+        this.router.navigate(['home']).then();
+      }
     }else {
       this.router.navigate(['']).then();
     }

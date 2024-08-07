@@ -1,4 +1,7 @@
+@import "src/styles";
+
 .container {
+  width: 18vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +12,12 @@
   .create-button {
     width: 100%;
   }
+
   .input {
+    width: 100%;
+  }
+
+  app-text-area {
     width: 100%;
   }
 

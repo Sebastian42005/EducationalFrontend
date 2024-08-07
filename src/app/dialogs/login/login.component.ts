@@ -22,6 +22,8 @@ export class LoginComponent {
   role = '';
   primaryColor = primaryColor;
   currentTabIndex = 0;
+  profileImage: File | undefined;
+  profileImageUrl: string | undefined;
 
   constructor(private apiService: ApiService,
               private matDialogRef: MatDialogRef<LoginComponent>,
@@ -64,14 +66,36 @@ export class LoginComponent {
 
   register() {
     this.apiService.register(this.registerEmail, this.registerFirstName, this.registerLastName, this.registerPassword, this.role).subscribe(response => {
-      showMessageEmitter.emit({
-        message: 'Registration successful!',
-        error: false,
-      });
-      this.loginEmail = this.registerEmail;
-      this.loginPassword = this.registerPassword;
-      this.currentTabIndex = 0;
+      if (this.profileImage) {
+        console.log(response.id);
+        this.apiService.setUserProfileImage(response.id, this.profileImage).subscribe(() => {
+          this.finishRegister();
+        });
+      } else {
+        this.finishRegister();
+      }
     });
+  }
+
+  finishRegister() {
+    showMessageEmitter.emit({
+      message: 'Registration successful!',
+      error: false,
+    });
+    this.loginEmail = this.registerEmail;
+    this.loginPassword = this.registerPassword;
+    this.currentTabIndex = 0;
+  }
+
+  onFileSelected($event: any) {
+    if ($event.currentTarget.files.length > 0) {
+      this.profileImage = $event.currentTarget.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(this.profileImage!!);
+      reader.onload = () => {
+        this.profileImageUrl = reader.result as string;
+      }
+    }
   }
 }
 

@@ -1,0 +1,10 @@
+<div class="profile-div">
+  @if (!profileImgFailed) {
+    <img [ngStyle]="{'width': this.size + 'px', 'height': this.size + 'px'}" (error)="handleProfileImgError()" [src]="getProfileImage()" alt="Error Image">
+  }
+  @if (profileImgFailed && user) {
+    <div [ngStyle]="{'width': this.size + 'px', 'height': this.size + 'px'}" [ngClass]="darkMode ? 'white' : 'black'">
+      <span>{{ user.firstName.charAt(0) + user.lastName.charAt(0) | uppercase }}</span>
+    </div>
+  }
+</div>

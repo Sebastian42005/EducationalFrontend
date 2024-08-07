@@ -9,7 +9,7 @@
         <div class="subject-footer">
           <span>{{ subject.name }}</span>
           <div class="subject-actions">
-            <mat-icon style="color: gray">edit</mat-icon>
+            <mat-icon style="color: gray" (click)="editSubject(subject)">edit</mat-icon>
             <mat-icon style="color: darkred" (click)="deleteSubject(subject)">delete</mat-icon>
           </div>
         </div>

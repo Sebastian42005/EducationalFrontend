@@ -49,45 +49,6 @@ header {
         color: $app-secondary-color;
       }
     }
-
-    .profile-div {
-      cursor: pointer;
-      transition: 200ms;
-
-      &:hover {
-        color: $app-secondary-color;
-
-        div {
-          border: 2px solid $app-secondary-color;
-        }
-      }
-
-      img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-right: 10px;
-      }
-
-      div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        border: 2px solid white;
-
-        span {
-          font-size: 1.5rem;
-          line-height: 40px;
-          display: block;
-          letter-spacing: 1px;
-          text-align: center;
-        }
-      }
-    }
   }
 }
 

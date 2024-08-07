@@ -1,8 +1,18 @@
 @import "src/styles.scss";
 
 .container {
-
   $icon-size: 1.8rem;
+
+  h1, p {
+    text-align: center;
+    margin: 0;
+  }
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: $app-primary-color;
+  }
 
   .back-arrow {
     margin-left: 20px;

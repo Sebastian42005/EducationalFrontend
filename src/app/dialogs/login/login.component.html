@@ -3,18 +3,30 @@
     <mat-tab label="Login">
       <div class="login-container">
         <app-input [color]="primaryColor" placeholder="Email" (textChange)="loginEmail = $event"></app-input>
-        <app-input [color]="primaryColor" placeholder="Password" type="password" (textChange)="loginPassword = $event"></app-input>
+        <app-input [color]="primaryColor" placeholder="Password" type="password"
+                   (textChange)="loginPassword = $event"></app-input>
         <app-button [disabled]="getIsLoginDisabled()" text="Login" icon="person" (click)="login()"></app-button>
       </div>
     </mat-tab>
     <mat-tab label="Register">
       <div class="register-container">
+        <label for="profile-image" class="profile-image-label">
+            <img class="profile-image" [src]="profileImageUrl ? profileImageUrl : 'assets/profile.png'" alt="Profile Image">
+
+        </label>
+        <input id="profile-image" (change)="onFileSelected($event)" [hidden]="true" type="file"
+               accept="image/png, image/jpeg, image/webp">
         <app-input [color]="primaryColor" placeholder="Email" (textChange)="registerEmail = $event"></app-input>
-        <app-input [color]="primaryColor" placeholder="Firstname" (textChange)="registerFirstName = $event"></app-input>
-        <app-input [color]="primaryColor" placeholder="Lastname" (textChange)="registerLastName = $event"></app-input>
-        <app-input [color]="primaryColor" placeholder="Password" type="password" (textChange)="registerPassword = $event"></app-input>
-        <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role" [options]="options"></app-select2>
-        <app-button [disabled]="getIsRegisterDisabled()" text="Register" icon="person_add" (click)="register()"></app-button>
+        <app-input [color]="primaryColor" placeholder="Firstname"
+                   (textChange)="registerFirstName = $event"></app-input>
+        <app-input [color]="primaryColor" placeholder="Lastname"
+                   (textChange)="registerLastName = $event"></app-input>
+        <app-input [color]="primaryColor" placeholder="Password" type="password"
+                   (textChange)="registerPassword = $event"></app-input>
+        <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
+                     [options]="options"></app-select2>
+        <app-button [disabled]="getIsRegisterDisabled()" text="Register" icon="person_add"
+                    (click)="register()"></app-button>
       </div>
     </mat-tab>
   </mat-tab-group>

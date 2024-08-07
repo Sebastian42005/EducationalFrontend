@@ -6,6 +6,7 @@ import {primaryColor} from "../../../../exports/ExportVariables";
 import {UserRole} from "../../../../service/api/entities/UserRole";
 import {SubjectDto} from "../../../../service/api/entities/SubjectDto";
 import {showMessageEmitter} from "../../../../components/popup-info/popup-info.component";
+import {StudentDto} from "../../../../service/api/entities/StudentDto";
 
 @Component({
   selector: 'app-admin-user-edit',
@@ -14,8 +15,11 @@ import {showMessageEmitter} from "../../../../components/popup-info/popup-info.c
 })
 export class AdminUserEditComponent implements OnInit {
   user: UserDto;
-  options = ["Student", "Teacher", "Admin"]
-  subjects: SubjectWithActivation[] = []
+  options = ["Student", "Teacher", "Admin"];
+  subjects: SubjectWithActivation[] = [];
+  students: UserWithActivation[] = [];
+  filteredStudents: UserWithActivation[] = [];
+  search = "";
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -33,8 +37,33 @@ export class AdminUserEditComponent implements OnInit {
       this.user = user;
       if (this.user.role === UserRole.TEACHER) {
         this.getSubjects();
+        this.getStudents();
       }
     })
+  }
+
+  filterStudents() {
+    this.filteredStudents = this.students
+      .filter(student => this.getStudentName(student).toLowerCase().includes(this.search.toLowerCase()));
+  }
+
+  getStudentName(student: UserWithActivation) {
+    return student.user.firstName + " " + student.user.lastName;
+  }
+
+  getStudents() {
+    this.apiService.getAllUsers().subscribe(users => {
+      users = users.filter(user => user.role === UserRole.STUDENT);
+      users.forEach(currentUser => {
+        this.students.push({
+          user: currentUser,
+          isActivated: this.user.teacher.students.some(student => student.id == currentUser.student.id)
+        })
+      });
+      this.students.sort((a, b) => (a.isActivated === b.isActivated ? 0 : a.isActivated ? -1 : 1));
+      this.filteredStudents = this.students;
+    })
+
   }
 
   getSubjects() {
@@ -95,6 +124,16 @@ export class AdminUserEditComponent implements OnInit {
       })
     })
   }
+
+  toggleStudent(student: UserWithActivation) {
+    if (student.isActivated) {
+      student.isActivated = false
+      this.user.teacher.students = this.user.teacher.students.filter(stud => stud.id != student.user.student.id)
+    } else {
+      student.isActivated = true
+      this.user.teacher.students.push(student.user.student)
+    }
+  }
 }
 
 export function getRoleAsString(role: UserRole): string {
@@ -112,3 +151,8 @@ type SubjectWithActivation = {
   subject: SubjectDto;
   isActivated: boolean;
 };
+
+type UserWithActivation = {
+  user: UserDto,
+  isActivated: boolean
+}

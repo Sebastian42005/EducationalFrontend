@@ -11,6 +11,7 @@ import {primaryColor} from "../../exports/ExportVariables";
 })
 export class CreateSubjectDialogComponent {
   name = '';
+  description = '';
   primaryColor = primaryColor;
   file: File | undefined;
   free = false;
@@ -20,7 +21,7 @@ export class CreateSubjectDialogComponent {
 
   createSubject() {
     if (this.file && this.name) {
-      this.apiService.createSubject(this.name, this.free).subscribe(subject => {
+      this.apiService.createSubject(this.name, this.description, this.free).subscribe(subject => {
         this.apiService.putImageToSubject(subject.id, this.file!).subscribe(() => {
           showMessageEmitter.emit({
             message: 'Subject created successfully',

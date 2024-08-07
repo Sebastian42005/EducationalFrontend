@@ -14,6 +14,14 @@
     gap: 15px;
     justify-content: center;
 
+    .profile-image {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid $app-primary-color;
+      cursor: pointer;
+    }
+
     app-input, app-select, app-select2 {
       width: 60%;
     }
