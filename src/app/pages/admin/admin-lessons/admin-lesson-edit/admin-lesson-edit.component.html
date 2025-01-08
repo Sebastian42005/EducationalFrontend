@@ -1,0 +1,7 @@
+<div class="container">
+    <h1>Update Lesson</h1>
+    <app-input [color]="primaryColor" class="input" [value]="lesson.name" (textChange)="lesson.name = $event" placeholder="Name"></app-input>
+    <app-file [text]="lesson.studentPDFName" accept="application/pdf" (fileChange)="studentFile = $event"></app-file>
+    <app-file [text]="lesson.teacherPDFName" accept="application/pdf" (fileChange)="teacherFile = $event"></app-file>
+    <button class="update-button" mat-raised-button color="primary" (click)="updateLesson()">Update Lesson</button>
+</div>

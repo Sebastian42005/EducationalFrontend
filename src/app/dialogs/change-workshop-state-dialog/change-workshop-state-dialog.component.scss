@@ -1,0 +1,19 @@
+@import "src/styles";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  padding: 30px;
+  
+  app-text-area {
+    width: 100%;
+  }
+  
+  .options-div {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

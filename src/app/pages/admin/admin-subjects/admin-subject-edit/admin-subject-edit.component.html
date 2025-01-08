@@ -8,7 +8,7 @@
              (change)="pickFile($event)">
       <app-input [color]="primaryColor" placeholder="Name" [value]="subject.name"
                  (textChange)="subject.name = $event" [showInfo]="true"></app-input>
-      <app-text-area placeholder="Description" (onChange)="subject.description = $event"></app-text-area>
+      <app-text-area placeholder="Description" [value]="subject.description" (onChange)="subject.description = $event"></app-text-area>
       <mat-checkbox color="primary" [(ngModel)]="subject.free">Available for all</mat-checkbox>
       <button class="update-button" mat-raised-button color="primary" (click)="updateSubject()">Update Subject</button>
     </div>

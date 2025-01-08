@@ -1,0 +1,13 @@
+<div class="profile-pic-div">
+    <label class="profile-pic-label" for="profilepic" [style]="{'cursor': editing ? 'pointer' : 'default'}">
+        <img class="profile-pic" [src]="profilePicture">
+        @if (editing) {
+            <div class="edit-profile-div">
+                <mat-icon>edit</mat-icon>
+            </div>
+        }
+    </label>
+    <input [disabled]="!editing" hidden="true" id="profilepic" type="file"
+           accept="application/png, application/webp, application/jpeg"
+           (change)="setProfilePicture($event)">
+</div>

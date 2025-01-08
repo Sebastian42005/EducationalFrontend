@@ -1,0 +1,5 @@
+<div class="container">
+    <app-user-list (showChatEmitter)="workshop = $event"></app-user-list>
+    <app-message-list [workshop]="workshop"></app-message-list>
+    <app-user-info [workshop]="workshop"></app-user-info>
+</div>

@@ -2,6 +2,18 @@
     <div class="title-div">
         <h1 (click)="navigateToHome()">{{ title }}</h1>
     </div>
+    <div class="center-links">
+        @switch (user?.role) {
+            @case (UserRole.TEACHER) {
+                <a routerLink="workshop">Workshop</a>
+            }
+            @case (UserRole.ADMIN) {
+                <a routerLink="admin/user">User</a>
+                <a routerLink="admin/subject">Subjects</a>
+                <a routerLink="admin/workshop">Workshops</a>
+            }
+        }
+    </div>
     <div class="links">
         @if (!isLoggedIn) {
             <span class="login-btn" (click)="login()">Login</span>

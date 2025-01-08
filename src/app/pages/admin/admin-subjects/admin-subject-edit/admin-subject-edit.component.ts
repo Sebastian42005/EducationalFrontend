@@ -3,7 +3,6 @@ import {ApiService, baseUrl} from "../../../../service/api/api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SubjectDto} from "../../../../service/api/entities/SubjectDto";
 import {primaryColor} from "../../../../exports/ExportVariables";
-import {AppModule} from "../../../../app.module";
 import {showMessageEmitter} from "../../../../components/popup-info/popup-info.component";
 
 @Component({
@@ -54,14 +53,14 @@ export class AdminSubjectEditComponent implements OnInit {
     this.apiService.updateSubject(this.subject).subscribe(() => {
       if (this.file) {
         this.apiService.putImageToSubject(this.subject.id, this.file).subscribe(() => {
-          this.router.navigate(["admin"]).then()
+          this.router.navigate(["admin", "subject"]).then()
           showMessageEmitter.emit({
             message: "Successfully updated subject!",
             error: false
           })
         });
       } else {
-        this.router.navigate(["admin"]).then()
+        this.router.navigate(["admin", "subject"]).then()
         showMessageEmitter.emit({
           message: "Successfully updated subject!",
           error: false

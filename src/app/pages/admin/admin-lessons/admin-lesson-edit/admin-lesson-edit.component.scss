@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 30px 60px 60px;
+
+  .create-button {
+    width: 100%;
+  }
+
+  app-file {
+    width: 100%;
+  }
+
+  .input {
+    width: 100%;
+  }
+}

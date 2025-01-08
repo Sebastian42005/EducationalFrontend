@@ -13,6 +13,7 @@ export class InputComponent {
   @Output() textChange = new EventEmitter<string>();
   @Input() color: string = 'black';
   @Input() showInfo: boolean = false;
+  @Input() required: boolean = false;
   passwordVisible: boolean = false;
 
   onInputChange() {

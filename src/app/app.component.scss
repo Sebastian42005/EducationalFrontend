@@ -1,6 +1,7 @@
 @import "src/styles.scss";
 
 header {
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 5vh;
@@ -39,9 +40,25 @@ header {
     }
   }
 
+  .center-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    a {
+      color: white;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
+  }
+
   .links {
 
     .login-btn {
+      font-size: 1.2rem;
       cursor: pointer;
       transition: 0.2s;
 

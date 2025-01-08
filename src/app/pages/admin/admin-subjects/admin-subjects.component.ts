@@ -14,7 +14,6 @@ import {showMessageEmitter} from "../../../components/popup-info/popup-info.comp
 })
 export class AdminSubjectsComponent implements OnInit {
   subjectList: SubjectDto[] = [];
-  selectedSubject: SubjectDto | null;
 
   constructor(private matDialog: MatDialog,
               private apiService: ApiService,
@@ -36,7 +35,7 @@ export class AdminSubjectsComponent implements OnInit {
   }
 
   showSubject(subject: SubjectDto) {
-    this.selectedSubject = subject;
+    this.router.navigate(['admin', 'subject', subject.id]).then();
   }
 
   deleteSubject(subject: SubjectDto | undefined) {
@@ -62,7 +61,7 @@ export class AdminSubjectsComponent implements OnInit {
   }
 
   editSubject(subject: SubjectDto) {
-    this.router.navigate(['admin/subject', subject.id]).then();
+    this.router.navigate(['admin', 'subject', subject.id, 'edit']).then();
   }
 
   private loadSubjects() {

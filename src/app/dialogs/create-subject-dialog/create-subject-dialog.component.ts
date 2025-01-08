@@ -1,8 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ApiService} from "../../service/api/api.service";
 import {MatDialogRef} from "@angular/material/dialog";
 import {showMessageEmitter} from "../../components/popup-info/popup-info.component";
 import {primaryColor} from "../../exports/ExportVariables";
+import {SubjectDto} from "../../service/api/entities/SubjectDto";
+import {LessonComponent} from "../../pages/lesson/lesson.component";
+import {LessonDto} from "../../service/api/entities/LessonDto";
 
 @Component({
   selector: 'app-create-subject-dialog',

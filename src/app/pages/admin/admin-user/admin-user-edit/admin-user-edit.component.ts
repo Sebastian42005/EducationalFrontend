@@ -6,7 +6,6 @@ import {primaryColor} from "../../../../exports/ExportVariables";
 import {UserRole} from "../../../../service/api/entities/UserRole";
 import {SubjectDto} from "../../../../service/api/entities/SubjectDto";
 import {showMessageEmitter} from "../../../../components/popup-info/popup-info.component";
-import {StudentDto} from "../../../../service/api/entities/StudentDto";
 
 @Component({
   selector: 'app-admin-user-edit',
@@ -17,9 +16,11 @@ export class AdminUserEditComponent implements OnInit {
   user: UserDto;
   options = ["Student", "Teacher", "Admin"];
   subjects: SubjectWithActivation[] = [];
+  filteredSubjects: SubjectWithActivation[] = [];
   students: UserWithActivation[] = [];
   filteredStudents: UserWithActivation[] = [];
   search = "";
+  searchSubject = "";
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -47,6 +48,11 @@ export class AdminUserEditComponent implements OnInit {
       .filter(student => this.getStudentName(student).toLowerCase().includes(this.search.toLowerCase()));
   }
 
+  filterSubjects() {
+    this.filteredSubjects = this.subjects
+        .filter(subject => subject.subject.name.toLowerCase().includes(this.searchSubject.toLowerCase()));
+  }
+
   getStudentName(student: UserWithActivation) {
     return student.user.firstName + " " + student.user.lastName;
   }
@@ -68,13 +74,15 @@ export class AdminUserEditComponent implements OnInit {
 
   getSubjects() {
     this.apiService.getAllNotFreeSubjects().subscribe(notFreeSubjects => {
+
       notFreeSubjects.forEach(current => {
         this.subjects.push({
           subject: current,
           isActivated: this.user.teacher.subjects.some(subject => subject.id == current.id)
         })
+        this.filteredSubjects = this.subjects;
       });
-      this.subjects.sort((a, b) => (a.isActivated === b.isActivated ? 0 : a.isActivated ? -1 : 1));
+      this.filteredSubjects.sort((a, b) => (a.isActivated === b.isActivated ? 0 : a.isActivated ? -1 : 1));
     })
   }
 

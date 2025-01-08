@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>Are you sure you want to {{accept ? 'accept' : 'decline'}} the request?</h2>
+    <app-text-area [value]="message" (onChange)="message = $event" placeholder="Message"></app-text-area>
+    <div class="options-div">
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="confirm()">Confirm</button>
+    </div>
+</div>

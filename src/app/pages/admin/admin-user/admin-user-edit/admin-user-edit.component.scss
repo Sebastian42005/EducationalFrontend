@@ -13,7 +13,6 @@
     align-items: center;
     gap: 10px;
     width: 30%;
-    margin: 20px;
 
     app-input {
       width: 100%;
@@ -25,38 +24,44 @@
     }
   }
 
-  .students-div {
+  .search-div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    border: 2px solid $app-primary-color;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 3px;
 
-    .search-div {
-      display: flex;
-      flex-direction: row;
-      gap: 10px;
-      align-items: center;
-      border: 2px solid $app-primary-color;
-      border-radius: 10px;
-      padding: 3px;
+    input {
+      width: 100%;
+      border: none;
+      font-size: 1rem;
+      padding: 10px;
 
-      input {
-        width: 100%;
-        border: none;
-        font-size: 1rem;
-        padding: 10px;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      $mat-icon-size: 2rem;
-      mat-icon {
-        font-size: $mat-icon-size;
-        width: 2.3rem;
-        height: $mat-icon-size;
-        color: $app-primary-color;
-        margin-right: 10px;
-        cursor: pointer;
+      &:focus {
+        outline: none;
       }
     }
+
+    $mat-icon-size: 2rem;
+
+    mat-icon {
+      font-size: $mat-icon-size;
+      width: 2.3rem;
+      height: $mat-icon-size;
+      color: $app-primary-color;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .students-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 
     .student-list {
       display: flex;
@@ -80,81 +85,88 @@
 
   }
 
-  .subject-div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  .subject-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
 
-    .subject {
-      position: relative;
-      display: flex;
-      height: 250px;
-      flex-direction: column;
-      gap: 5px;
-      align-items: center;
-      border-radius: 20px;
-      padding-bottom: 10px;
-      background-color: white;
-      cursor: pointer;
-      box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-      transition: 300ms;
+    .subject-div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
 
-      &:hover {
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-      }
-
-      .overlay {
-        position: absolute;
-        top: -20px;
-        left: 0;
-        width: 100%;
-        height: 100%;
+      .subject {
+        position: relative;
         display: flex;
+        height: 250px;
+        flex-direction: column;
+        gap: 5px;
         align-items: center;
-        justify-content: center;
-      }
-
-      .overlay::before,
-      .overlay::after {
-        content: '';
-        position: absolute;
-        width: 70%;
-        height: 7px;
-        background-color: rgba(139, 0, 0, 0.76);
-      }
-
-      .overlay::before {
-        transform: rotate(45deg);
-      }
-
-      .overlay::after {
-        transform: rotate(-45deg);
-      }
-
-      .image-wrapper {
-        width: 90%;
-        height: 200px;
-        margin-top: 10px;
         border-radius: 20px;
-        overflow: hidden;
+        padding-bottom: 10px;
+        background-color: white;
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        transition: 300ms;
 
-        img {
-          cursor: pointer;
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+        }
+
+        .overlay {
+          position: absolute;
+          top: -20px;
+          left: 0;
           width: 100%;
           height: 100%;
-          transition: 300ms ease-in-out;
-          object-fit: cover;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-      }
 
-      span {
-        font-size: 1.5rem;
-        transition: 300ms ease-in-out;
-        color: $app-primary-color;
-      }
+        .overlay::before,
+        .overlay::after {
+          content: '';
+          position: absolute;
+          width: 70%;
+          height: 7px;
+          background-color: rgba(139, 0, 0, 0.76);
+        }
 
-      mat-checkbox {
-        scale: 1.2;
+        .overlay::before {
+          transform: rotate(45deg);
+        }
+
+        .overlay::after {
+          transform: rotate(-45deg);
+        }
+
+        .image-wrapper {
+          width: 90%;
+          height: 200px;
+          margin-top: 10px;
+          border-radius: 20px;
+          overflow: hidden;
+
+          img {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            transition: 300ms ease-in-out;
+            object-fit: cover;
+          }
+        }
+
+        span {
+          font-size: 1.5rem;
+          transition: 300ms ease-in-out;
+          color: $app-primary-color;
+        }
+
+        mat-checkbox {
+          scale: 1.2;
+        }
       }
     }
   }

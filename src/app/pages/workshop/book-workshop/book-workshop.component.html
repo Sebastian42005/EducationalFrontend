@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Book Workshop</h1>
+    <app-select2 [color]="primaryColor" (selectedOptionChange)="setSubject($event)" placeholder="Subject"
+                 [options]="options"></app-select2>
+    <p>{{ selectedSubject?.description }}</p>
+    <div class="datetime-div">
+        <mat-form-field class="date">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="time">
+            <mat-label>Time</mat-label>
+            <input matInput type="time" placeholder="Time" [(ngModel)]="time">
+        </mat-form-field>
+    </div>
+    <div class="additional-div">
+        <app-input [color]="primaryColor" placeholder="School" (textChange)="this.school = $event"></app-input>
+        <app-text-area placeholder="Message" (onChange)="this.message = $event"></app-text-area>
+    </div>
+    <app-button class="create-button" text="Book" icon="event" (click)="bookWorkshop()"></app-button>
+</div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent, loginEmitter} from "./dialogs/login/login.component";
 import {showMessageEmitter} from "./components/popup-info/popup-info.component";
@@ -8,96 +8,119 @@ import {UserDto} from "./service/api/entities/UserDto";
 import {UserRole} from "./service/api/entities/UserRole";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'Educational';
-  showPopup = false;
-  isLoggedIn = false;
-  user: UserDto | undefined;
-  profileImgFailed = false;
-  menuOpened = false;
+export class AppComponent implements OnInit, OnDestroy {
+    title = 'Educational';
+    showPopup = false;
+    isLoggedIn = false;
+    user: UserDto | undefined;
+    profileImgFailed = false;
+    menuOpened = false;
+    private globalClickListener: () => void;
 
-  constructor(private matDialog: MatDialog,
-              private router: Router,
-              private apiService: ApiService) {
-  }
-
-  login() {
-    this.matDialog.open(LoginComponent).afterClosed().subscribe(isLoggedIn => {
-      if (isLoggedIn) {
-        this.isLoggedIn = true;
-      }
-    });
-  }
-
-  toggleMenu() {
-    this.menuOpened = !this.menuOpened;
-  }
-
-  close() {
-    this.showPopup = false;
-  }
-
-  ngOnInit(): void {
-    this.popupSubscribe();
-    this.getOwnUser();
-    this.headerTitleEmitter();
-    loginEmitter.subscribe(() => this.getOwnUser());
-  }
-
-  getOwnUser() {
-    this.apiService.getOwnUser().subscribe({
-      next: (user: UserDto) => {
-        this.isLoggedIn = true;
-        this.user = user;
-      },
-      error: () => {
-        this.isLoggedIn = false;
-        localStorage.clear();
-      }
-    });
-  }
-
-  popupSubscribe() {
-    showMessageEmitter.subscribe(() => {
-      this.showPopup = true;
-      setTimeout(() => {
-        this.showPopup = false;
-      }, 3000)
-    });
-  }
-
-  navigateToHome() {
-    if (this.isLoggedIn) {
-      if (this.user?.role == UserRole.ADMIN) {
-        this.router.navigate(['admin']).then();
-      } else {
-        this.router.navigate(['home']).then();
-      }
-    }else {
-      this.router.navigate(['']).then();
+    constructor(private matDialog: MatDialog,
+                private router: Router,
+                private apiService: ApiService,
+                private elementRef: ElementRef,
+                private renderer: Renderer2) {
     }
-  }
 
-  handleProfileImgError() {
-    this.profileImgFailed = true;
-  }
+    login() {
+        this.matDialog.open(LoginComponent).afterClosed().subscribe(isLoggedIn => {
+            if (isLoggedIn) {
+                this.isLoggedIn = true;
+            }
+        });
+    }
 
-  logout() {
-    this.menuOpened = false;
-    localStorage.clear();
-    this.isLoggedIn = false;
-    this.router.navigate(['']).then();
-  }
+    toggleMenu() {
+        this.menuOpened = !this.menuOpened;
+    }
 
-  headerTitleEmitter() {
-    changeTextEmitter.subscribe(({text, backOption}) => {
-      this.title = text;
-    })
-  }
+    ngOnDestroy(): void {
+        if (this.globalClickListener) {
+            this.globalClickListener();
+        }
+    }
+
+    close() {
+        this.showPopup = false;
+    }
+
+    ngOnInit(): void {
+        this.popupSubscribe();
+        this.getOwnUser();
+        this.headerTitleEmitter();
+        loginEmitter.subscribe(() => this.getOwnUser());
+        this.checkProfileClick();
+    }
+
+    checkProfileClick() {
+        this.globalClickListener = this.renderer.listen('document', 'click', (event: Event) => {
+            const clickedInsideProfileImage = this.elementRef.nativeElement.querySelector('app-profile-image')?.contains(event.target);
+            const clickedInsideDropdownMenu = this.elementRef.nativeElement.querySelector('app-dropdown-menu')?.contains(event.target);
+
+            if (!clickedInsideProfileImage && !clickedInsideDropdownMenu) {
+                this.menuOpened = false;
+            }
+        });
+    }
+
+    getOwnUser() {
+        this.apiService.getOwnUser().subscribe({
+            next: (user: UserDto) => {
+                this.isLoggedIn = true;
+                this.user = user;
+            },
+            error: () => {
+                this.isLoggedIn = false;
+                localStorage.clear();
+            }
+        });
+    }
+
+    popupSubscribe() {
+        showMessageEmitter.subscribe(() => {
+            this.showPopup = true;
+            setTimeout(() => {
+                this.showPopup = false;
+            }, 3000)
+        });
+    }
+
+    navigateToHome() {
+        if (this.isLoggedIn) {
+            if (this.user?.role == UserRole.ADMIN) {
+                this.router.navigate(['admin', 'subject']).then();
+            } else {
+                this.router.navigate(['home']).then();
+            }
+        } else {
+            this.router.navigate(['']).then();
+        }
+    }
+
+    handleProfileImgError() {
+        this.profileImgFailed = true;
+    }
+
+    logout() {
+        this.menuOpened = false;
+        localStorage.clear();
+        this.isLoggedIn = false;
+        this.router.navigate(['']).then();
+    }
+
+    headerTitleEmitter() {
+        changeTextEmitter.subscribe(({text, backOption}) => {
+            this.title = text;
+        })
+    }
+
+    protected readonly UserRole = UserRole;
 }
 
-export const changeTextEmitter = new EventEmitter<{text: string, backOption: boolean}>();
+export const changeTextEmitter = new EventEmitter<{ text: string, backOption: boolean }>();

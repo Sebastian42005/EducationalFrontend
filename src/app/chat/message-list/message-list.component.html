@@ -1,0 +1,35 @@
+@if (workshop) {
+    <div class="chat-container">
+        <div class="message-list">
+            @for (message of messages; track message.id) {
+                @if (message.type != MessageType.WORKSHOP_STATE_CHANGE) {
+                    <div #body
+                         [ngClass]="isOwnMessage(message.sender) ? 'message-container message-own' : 'message-container message-opposite'">
+                        <div class="message-header">
+                            <h3 class="message-user">{{ message.sender.firstName }} {{ message.sender.lastName }}</h3>
+                            <span class="message-time">{{ message.date | date: 'dd.MM.YYYY | HH:mm' }}</span>
+                        </div>
+                        <span class="message-msg">{{ message.message }}</span>
+                        @if (message.sender.id == ownUser.id) {
+                            <mat-icon [ngStyle]="{'color': message.read ? '#00ffff' : 'gray'}" class="message-read">
+                                check
+                            </mat-icon>
+                        }
+                    </div>
+                } @else {
+                    <h2 class="message-workshop-state-changed" [ngClass]="isDeclined(message) ? 'message-declined' : 'message-accepted'">{{message.message}}</h2>
+                }
+            }
+        </div>
+        <div class="message-div">
+            <input maxlength="255" class="message-input" type="text" [(ngModel)]="message"
+                   (keyup.enter)="sendMessage()"
+                   placeholder="Message..."/>
+            <mat-icon class="message-btn" (click)="sendMessage()">send</mat-icon>
+        </div>
+    </div>
+} @else {
+    <div class="no-chat-div">
+        <h1>No Chat opened</h1>
+    </div>
+}

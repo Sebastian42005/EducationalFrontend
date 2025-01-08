@@ -1,55 +1,63 @@
-import {Component, OnInit} from '@angular/core';
-import {primaryColor} from "../../exports/ExportVariables";
-import {SubjectDto} from "../../service/api/entities/SubjectDto";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatTableDataSource} from "@angular/material/table";
+import {MatSort} from "@angular/material/sort";
+import {Router} from "@angular/router";
+import {WorkshopDto, WorkshopState} from "../../service/api/entities/WorkshopDto";
 import {ApiService} from "../../service/api/api.service";
 
 @Component({
-  selector: 'app-workshop',
-  templateUrl: './workshop.component.html',
-  styleUrl: './workshop.component.scss'
+    selector: 'app-workshop',
+    templateUrl: './workshop.component.html',
+    styleUrl: './workshop.component.scss'
 })
 export class WorkshopComponent implements OnInit {
-  subjects: SubjectDto[] = [];
-  options: string[] = [];
-  date: Date;
-  time: string;
-  school: string;
-  message: string;
-  selectedSubject: SubjectDto | undefined;
+    displayedColumns: string[] = ['subject', 'date', 'school', 'state', 'action'];
+    dataSource: MatTableDataSource<WorkshopDto>;
 
-  constructor(private apiService: ApiService) {
-  }
+    @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
-    this.apiService.getAllSubjectsNoAuth().subscribe({
-      next: (subjects: SubjectDto[]) => {
-        this.subjects = subjects;
-        this.options = subjects.map(subject => subject.name);
-      }
-    });
-  }
-
-  setSubject($event: string) {
-    this.selectedSubject = this.subjects.find(subject => subject.name === $event);
-  }
-
-  protected readonly primaryColor = primaryColor;
-
-  bookWorkshop() {
-    const instant = new Date(this.date);
-    const time = this.time.split(':');
-    instant.setHours(parseInt(time[0]));
-    instant.setMinutes(parseInt(time[1]));
-
-    if (this.selectedSubject) {
-      this.apiService.bookWorkshop(this.selectedSubject, instant.toISOString(), this.school, this.message).subscribe({
-        next: () => {
-          alert('Workshop booked successfully');
-        },
-        error: () => {
-          alert('Failed to book workshop');
-        }
-      });
+    constructor(private apiService: ApiService,
+                private router: Router) {
     }
-  }
+
+    ngOnInit() {
+        this.apiService.getOwnWorkshops().subscribe(workshop => {
+            this.dataSource = new MatTableDataSource(workshop);
+            this.dataSource.sort = this.sort;
+        })
+    }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    }
+
+    bookWorkshop() {
+        this.router.navigate(['workshop', 'book']).then();
+    }
+
+    cancelWorkshop(id: number) {
+
+    }
+
+    displayWorkshop(workshop: WorkshopDto) {
+        this.router.navigate(['workshop', workshop.id]).then()
+    }
+
+    getStateColor(state: WorkshopState) {
+        switch (state) {
+            case WorkshopState.PENDING:
+                return 'blue';
+            case WorkshopState.ACCEPTED:
+                return 'green';
+            case WorkshopState.REJECTED:
+                return 'red';
+            default:
+                return 'grey';
+        }
+    }
 }

@@ -2,7 +2,7 @@
   <div class="container">
     <h1>{{ subject.name }}</h1>
     <p>{{ subject.description }}</p>
-    <mat-icon class="back-arrow" (click)="onBackArrowClick.emit()">arrow_back</mat-icon>
+    <mat-icon class="back-arrow" (click)="goBack()">arrow_back</mat-icon>
     <app-input [color]="primaryColor" [isSearch]=true class="search" placeholder="Search Lesson..."
                (textChange)="search($event)"></app-input>
     <mat-list class="list">
@@ -13,10 +13,12 @@
               <mat-icon class="menu-icon">school</mat-icon>
               <button class="menu-button">{{ lesson.name }}</button>
             </div>
+              @if (user.role == UserRole.ADMIN) {
             <div class="actions-div">
-              <mat-icon style="color: gray">edit</mat-icon>
+              <mat-icon style="color: gray" (click)="editLesson(lesson)">edit</mat-icon>
               <mat-icon style="color: darkred" (click)="deleteLesson(lesson)">delete</mat-icon>
             </div>
+              } 
           </div>
         </div>
       }

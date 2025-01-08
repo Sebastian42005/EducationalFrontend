@@ -1,0 +1,16 @@
+<div  class="container">
+    <mat-form-field class="example-full-width" (keyup)="filter($event)">
+        <mat-label>Search</mat-label>
+        <input type="search" placeholder="School" matInput>
+    </mat-form-field>
+    <div class="list">
+        @for (workshop of filteredWorkshops; track workshop.id) {
+            <div [ngClass]="selectedWorkshop === workshop ? 'selected' : 'not-selected'" class="item" (click)="showChat(workshop)">
+                <div class="info-div">
+                    <span class="value">{{ workshop.school }}</span>
+                    <mat-icon>{{getWorkshopIcon(workshop.state)}}</mat-icon>
+                </div>
+            </div>
+        }
+    </div>
+</div>

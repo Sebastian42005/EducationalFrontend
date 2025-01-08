@@ -1,49 +1,60 @@
 @if (user) {
-  <div class="container">
-    <div class="input-div">
-      <app-profile-image [size]="70" [user]="user" [darkMode]="false"></app-profile-image>
-      <app-input [color]="primaryColor" placeholder="Email" [value]="user.email"
-                 (textChange)="user.email = $event" [showInfo]="true"></app-input>
-      <app-input [color]="primaryColor" placeholder="Firstname" [value]="user.firstName"
-                 (textChange)="user.firstName = $event" [showInfo]="true"></app-input>
-      <app-input [color]="primaryColor" placeholder="Lastname" [value]="user.lastName"
-                 (textChange)="user.lastName = $event" [showInfo]="true"></app-input>
-      <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
-                   [options]="options" [selectedOption]="getUserRoleAsString()" [showInfo]="true"></app-select2>
-    </div>
-    @if (user.teacher) {
-      <div class="students-div">
-        <div class="search-div">
-          <input placeholder="Search..." [(ngModel)]="search" (ngModelChange)="filterStudents()">
-          <mat-icon>search</mat-icon>
+    <div class="container">
+        <div class="input-div">
+            <h2 class="title">Edit {{user.role | role}}</h2>
+            <app-profile-image [size]="70" [user]="user" [darkMode]="false"></app-profile-image>
+            <app-input [color]="primaryColor" placeholder="Email" [value]="user.email"
+                       (textChange)="user.email = $event" [showInfo]="true"></app-input>
+            <app-input [color]="primaryColor" placeholder="Firstname" [value]="user.firstName"
+                       (textChange)="user.firstName = $event" [showInfo]="true"></app-input>
+            <app-input [color]="primaryColor" placeholder="Lastname" [value]="user.lastName"
+                       (textChange)="user.lastName = $event" [showInfo]="true"></app-input>
+            <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
+                         [options]="options" [selectedOption]="getUserRoleAsString()" [showInfo]="true"></app-select2>
         </div>
-        <div class="student-list">
-          @for (student of filteredStudents; track student.user.id) {
-            <div class="student" (click)="toggleStudent(student)">
-              <app-profile-image [darkMode]="false" [user]="student.user"></app-profile-image>
-              <span>{{ student.user.firstName + ' ' + student.user.lastName }}</span>
-              <mat-checkbox color="primary" [checked]="student.isActivated"></mat-checkbox>
+        @if (user.teacher) {
+            <div class="students-div">
+                <h2 class="title">Pick Students</h2>
+                <div class="search-div">
+                    <input placeholder="Search..." [(ngModel)]="search" (ngModelChange)="filterStudents()">
+                    <mat-icon>search</mat-icon>
+                </div>
+                <div class="student-list">
+                    @for (student of filteredStudents; track student.user.id) {
+                        <div class="student" (click)="toggleStudent(student)">
+                            <app-profile-image [darkMode]="false" [user]="student.user"></app-profile-image>
+                            <span>{{ student.user.firstName + ' ' + student.user.lastName }}</span>
+                            <mat-checkbox color="primary" [checked]="student.isActivated"></mat-checkbox>
+                        </div>
+                        <div style="width: 100%; height: 1px; background: gray"></div>
+                    }
+                </div>
             </div>
-            <div style="width: 100%; height: 1px; background: gray"></div>
-          }
-        </div>
-      </div>
-      <div class="subject-div">
-        @for (subject of subjects; track subject.subject.id) {
-          <div class="subject" (click)="toggleSubject(subject)">
-            <div class="image-wrapper">
-              <img [src]="getImage(subject.subject.id)" [alt]="subject.subject.name + ' Image'">
+            <div class="subject-container">
+                <h2 class="title">Pick Subjects</h2>
+                <div class="search-div">
+                    <input placeholder="Search..." [(ngModel)]="searchSubject" (ngModelChange)="filterSubjects()">
+                    <mat-icon>search</mat-icon>
+                </div>
+                <div class="subject-div">
+                    @for (subject of filteredSubjects; track subject.subject.id) {
+                        <div class="subject" (click)="toggleSubject(subject)">
+                            <div class="image-wrapper">
+                                <img [src]="getImage(subject.subject.id)" [alt]="subject.subject.name + ' Image'">
+                            </div>
+                            <div style="display: flex; flex-direction: row; align-items: center">
+                                <span>{{ subject.subject.name }}</span>
+                            </div>
+                            @if (!subject.isActivated) {
+                                <div class="overlay"></div>
+                            }
+                        </div>
+                    }
+                </div>
             </div>
-            <div style="display: flex; flex-direction: row; align-items: center">
-              <span>{{ subject.subject.name }}</span>
-            </div>
-            @if (!subject.isActivated) {
-              <div class="overlay"></div>
-            }
-          </div>
         }
-      </div>
-    }
-  </div>
-  <button class="update-button" mat-raised-button color="primary" (click)="updateUser()">Update User</button>
+    </div>
+    <button class="update-button" mat-raised-button color="primary" (click)="updateUser()">
+        Update {{ user.role | role }}
+    </button>
 }

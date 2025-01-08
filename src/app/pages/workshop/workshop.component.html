@@ -1,23 +1,60 @@
 <div class="container">
-  <h1>Book Workshop</h1>
-  <app-select2 [color]="primaryColor" (selectedOptionChange)="setSubject($event)" placeholder="Subject"
-               [options]="options"></app-select2>
-  <p>{{ selectedSubject?.description }}</p>
-  <div class="datetime-div">
-    <mat-form-field class="date">
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="date">
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="WorkshopEntity" #input>
     </mat-form-field>
-    <mat-form-field class="time">
-      <mat-label>Time</mat-label>
-      <input matInput type="time" placeholder="Time" [(ngModel)]="time">
-    </mat-form-field>
-  </div>
-  <div class="additional-div">
-    <app-input [color]="primaryColor" placeholder="School" (textChange)="this.school = $event"></app-input>
-    <app-text-area placeholder="Message" (onChange)="this.message = $event"></app-text-area>
-  </div>
-  <app-button class="create-button" text="Book" icon="event" (click)="bookWorkshop()"></app-button>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- Subject Column -->
+            <ng-container matColumnDef="subject">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject </th>
+                <td mat-cell *matCellDef="let row"> {{ row.subject?.name}}</td>
+            </ng-container>
+
+            <!-- Date Column -->
+            <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let row"> {{ row.date | date:'dd.MM.yyyy HH:mm'}}</td>
+            </ng-container>
+
+            <!-- School Column -->
+            <ng-container matColumnDef="school">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> School </th>
+                <td mat-cell *matCellDef="let row"> {{ row.school}}</td>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> State </th>
+                <td [ngStyle]="{'color': getStateColor(row.state)}" mat-cell *matCellDef="let row"> {{ row.state}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+                <td mat-cell *matCellDef="let row">
+                    <div class="action-div">
+                        <mat-icon class="display-icon" (click)="displayWorkshop(row)">chat</mat-icon>
+                        <mat-icon class="delete-icon" (click)="cancelWorkshop(row.id)">delete</mat-icon>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value }}"</td>
+            </tr>
+        </table>
+    </div>
+    <button mat-fab
+            color="primary"
+            class="create-workshop-button"
+            aria-label="Create WorkshopEntity"
+            (click)="bookWorkshop()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

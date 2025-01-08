@@ -1,0 +1,14 @@
+@if (workshop) {
+    <div class="container">
+        <h2 class="school">{{ workshop.school }}</h2>
+        <h3 class="date">{{ workshop.date | date: "dd.MM.YYYY | HH:mm" }}</h3>
+        @if (ownUser.role == 'ADMIN' && workshop.state == 'PENDING') {
+            <div class="options-div">
+                <button class="decline-btn" mat-raised-button (click)="openChangeWorkshopStateDialog(false)">Decline
+                </button>
+                <button class="accept-btn" mat-raised-button (click)="openChangeWorkshopStateDialog(true)">Accept
+                </button>
+            </div>
+        }
+    </div>
+}
