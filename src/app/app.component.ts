@@ -13,7 +13,6 @@ import {UserRole} from "./service/api/entities/UserRole";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-    title = 'Educational';
     showPopup = false;
     isLoggedIn = false;
     user: UserDto | undefined;
@@ -53,7 +52,6 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.popupSubscribe();
         this.getOwnUser();
-        this.headerTitleEmitter();
         loginEmitter.subscribe(() => this.getOwnUser());
         this.checkProfileClick();
     }
@@ -96,15 +94,11 @@ export class AppComponent implements OnInit, OnDestroy {
             if (this.user?.role == UserRole.ADMIN) {
                 this.router.navigate(['admin', 'subject']).then();
             } else {
-                this.router.navigate(['home']).then();
+                this.router.navigate(['subject']).then();
             }
         } else {
             this.router.navigate(['']).then();
         }
-    }
-
-    handleProfileImgError() {
-        this.profileImgFailed = true;
     }
 
     logout() {
@@ -114,13 +108,5 @@ export class AppComponent implements OnInit, OnDestroy {
         this.router.navigate(['']).then();
     }
 
-    headerTitleEmitter() {
-        changeTextEmitter.subscribe(({text, backOption}) => {
-            this.title = text;
-        })
-    }
-
     protected readonly UserRole = UserRole;
 }
-
-export const changeTextEmitter = new EventEmitter<{ text: string, backOption: boolean }>();

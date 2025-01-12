@@ -1,33 +1,35 @@
 <header>
-    <div class="title-div">
-        <h1 (click)="navigateToHome()">{{ title }}</h1>
-    </div>
-    <div class="center-links">
-        @switch (user?.role) {
-            @case (UserRole.TEACHER) {
-                <a routerLink="workshop">Workshop</a>
-            }
-            @case (UserRole.ADMIN) {
-                <a routerLink="admin/user">User</a>
-                <a routerLink="admin/subject">Subjects</a>
-                <a routerLink="admin/workshop">Workshops</a>
-            }
-        }
-    </div>
-    <div class="links">
-        @if (!isLoggedIn) {
-            <span class="login-btn" (click)="login()">Login</span>
-        }
-        @if (isLoggedIn && user) {
-            <app-profile-image [user]="user" (click)="toggleMenu()"></app-profile-image>
-        }
-    </div>
+  <div class="title-div">
+    <img class="logo" src="assets/logo.png" (click)="navigateToHome()">
+  </div>
+  <div class="center-links">
+    @switch (user?.role) {
+      @case (UserRole.TEACHER) {
+        <a routerLink="subject">Subjects</a>
+        <a routerLink="workshop">Workshop</a>
+      }
+      @case (UserRole.ADMIN) {
+        <a routerLink="admin/user">User</a>
+        <a routerLink="admin/subject">Subjects</a>
+        <a routerLink="admin/workshop">Workshops</a>
+      }
+    }
+  </div>
+  <div class="links">
+    <span>DE / EN</span>
+    @if (!isLoggedIn) {
+      <span class="login-btn" (click)="login()">Login</span>
+    }
+    @if (isLoggedIn && user) {
+      <app-profile-image [user]="user" (click)="toggleMenu()"></app-profile-image>
+    }
+  </div>
 </header>
 @if (isLoggedIn) {
-    <app-dropdown-menu [ngClass]="menuOpened ? 'menu-opened' : ''"
-                       [user]="user"
-                       (logout)="logout()">
-    </app-dropdown-menu>
+  <app-dropdown-menu [ngClass]="menuOpened ? 'menu-opened' : ''"
+                     [user]="user"
+                     (logout)="logout()">
+  </app-dropdown-menu>
 }
 <router-outlet></router-outlet>
 <app-popup-info [ngClass]="'popup ' + (showPopup ? 'show-popup' : '')" (onClose)="close()"></app-popup-info>

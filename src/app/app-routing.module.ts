@@ -17,7 +17,7 @@ import {WorkshopChatComponent} from "./pages/workshop/workshop-chat/workshop-cha
 const routes: Routes = [
     {path: '', component: HomePageComponent},
     {path: 'login', component: LoginComponent},
-    {path: 'home', component: LandingPageComponent},
+    {path: 'subject', component: LandingPageComponent},
     {path: 'workshop', component: WorkshopComponent},
     {path: 'workshop/book', component: BookWorkshopComponent},
     {path: 'workshop/:id', component: WorkshopChatComponent},
