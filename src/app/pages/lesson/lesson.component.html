@@ -5,14 +5,14 @@
             <h1>{{ lesson.name }}</h1>
         </div>
         <mat-tab-group class="tab-group" color="primary">
-            <mat-tab class="tab" label="Student">
+            <mat-tab class="tab" label="Teacher">
                 @if (teacherPDF) {
                     <iframe title="Teacher PDF" width="99.8%" height="95%" [src]="teacherPDF" allowfullscreen></iframe>
                 }
             </mat-tab>
-            <mat-tab class="tab" label="Teacher">
+            <mat-tab class="tab" label="Student">
                 @if (studentPDF) {
-                    <iframe title="Teacher PDF" width="99.8%" height="95%" [src]="studentPDF" allowfullscreen></iframe>
+                    <iframe title="Student PDF" width="99.8%" height="95%" [src]="studentPDF" allowfullscreen></iframe>
                 }
             </mat-tab>
         </mat-tab-group>

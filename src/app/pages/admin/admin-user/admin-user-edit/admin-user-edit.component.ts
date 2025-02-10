@@ -63,7 +63,7 @@ export class AdminUserEditComponent implements OnInit {
       users.forEach(currentUser => {
         this.students.push({
           user: currentUser,
-          isActivated: this.user.teacher.students.some(student => student.id == currentUser.student.id)
+          isActivated: this.user.teacher.students != null ? this.user.teacher.students.some(student => student.id == currentUser.student.id) : false
         })
       });
       this.students.sort((a, b) => (a.isActivated === b.isActivated ? 0 : a.isActivated ? -1 : 1));
@@ -78,7 +78,7 @@ export class AdminUserEditComponent implements OnInit {
       notFreeSubjects.forEach(current => {
         this.subjects.push({
           subject: current,
-          isActivated: this.user.teacher.subjects.some(subject => subject.id == current.id)
+          isActivated: this.user.teacher.subjects != null ? this.user.teacher.subjects.some(subject => subject.id == current.id) : false
         })
         this.filteredSubjects = this.subjects;
       });

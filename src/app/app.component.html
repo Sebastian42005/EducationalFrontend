@@ -13,6 +13,9 @@
         <a routerLink="admin/subject">Subjects</a>
         <a routerLink="admin/workshop">Workshops</a>
       }
+      @case (UserRole.STUDENT) {
+        <a routerLink="subject">Subjects</a>
+      }
     }
   </div>
   <div class="links">

@@ -14,7 +14,7 @@
     margin: 0;
   }
 
-  .school {
+  .school, .subject {
     color: $app-primary-color;
   }
 
@@ -42,7 +42,7 @@
 
     .accept-btn {
       background-color: $app-primary-color;
-      
+
         &:hover {
             background-color: lighten($app-primary-color, 10%);
         }

@@ -32,6 +32,24 @@
       height: 91vh;
       object-fit: contain;
     }
+
+    .bubble-wrapper {
+      position: absolute;
+      right: 50px;
+      bottom: 70px;
+
+      .bubble-img {
+        width: 120px;
+      }
+
+      .thinking-img {
+        width: 70px;
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+      }
+    }
   }
 }
 
