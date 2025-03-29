@@ -1,7 +1,7 @@
-import {Component, Inject, Injectable} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {primaryColor} from "../../exports/ExportVariables";
 import {ApiService} from "../../service/api/api.service";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {showMessageEmitter} from "../../components/popup-info/popup-info.component";
 
 @Component({
@@ -10,10 +10,12 @@ import {showMessageEmitter} from "../../components/popup-info/popup-info.compone
   styleUrls: ['./create-lesson-dialog.component.scss']
 })
 export class CreateLessonDialogComponent {
+  acceptedFileTypes = ".html,.htm,.css,.js,.jpeg,.jpg,.png,.gif,.webp,.svg,.ico,.mp4,.webm,.ogg,.mp3,.wav,.txt,.pdf";
   primaryColor = primaryColor;
   name = '';
-  studentFile: File | undefined;
-  teacherFile: File | undefined;
+  description = '';
+  files: File[] = [];
+  onlyTeacherList: boolean[] = [];
   subjectId: number | undefined;
 
   constructor(private apiService: ApiService,
@@ -23,9 +25,9 @@ export class CreateLessonDialogComponent {
   }
 
   createLesson() {
-    if (this.name && this.teacherFile && this.studentFile && this.subjectId) {
-      this.apiService.createLesson(this.name, this.subjectId).subscribe(lesson => {
-        this.apiService.setLessonPDFs(lesson.id, this.studentFile!, this.teacherFile!).subscribe(() => {
+    if (this.subjectId && this.files.length > 0) {
+      this.apiService.createLesson(this.name, this.description, this.subjectId).subscribe(lesson => {
+        this.apiService.setLessonFiles(lesson.id, this.files, this.onlyTeacherList).subscribe(() => {
           showMessageEmitter.emit({
             message: 'Lesson created successfully',
             error: false
@@ -33,11 +35,16 @@ export class CreateLessonDialogComponent {
           this.matDialogRef.close();
         });
       });
-    }else {
-      showMessageEmitter.emit({
-        message: 'Please fill all fields',
-        error: true
-      });
     }
+  }
+
+  addFile(file: File) {
+    this.files.push(file);
+    this.onlyTeacherList.push(false);
+  }
+
+  removeFile(index: number) {
+    this.files.splice(index, 1);
+    this.onlyTeacherList.splice(index, 1);
   }
 }

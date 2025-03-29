@@ -1,7 +1,14 @@
 <div class="container">
-    <h1>Update Lesson</h1>
-    <app-input [color]="primaryColor" class="input" [value]="lesson.name" (textChange)="lesson.name = $event" placeholder="Name"></app-input>
-    <app-file [text]="lesson.studentPDFName" accept="application/pdf" (fileChange)="studentFile = $event"></app-file>
-    <app-file [text]="lesson.teacherPDFName" accept="application/pdf" (fileChange)="teacherFile = $event"></app-file>
-    <button class="update-button" mat-raised-button color="primary" (click)="updateLesson()">Update Lesson</button>
+  <h1>Update Lesson</h1>
+  <app-input [color]="primaryColor" class="input" [value]="lesson.name" (textChange)="lesson.name = $event" placeholder="Name"></app-input>
+  <app-text-area class="input" placeholder="Description" [value]="lesson.description" (onChange)="lesson.description = $event"></app-text-area>
+  @for (file of files; track file; let index = $index) {
+    <div class="horizontal-div">
+      <mat-icon style="width: 50px; height: 30px; font-size: 30px; cursor: pointer; margin-right: 10px" (click)="removeFile(index)">close</mat-icon>
+      <app-file style="max-width: 62%" [accept]="acceptedFileTypes" [showIcon]=false [file]="file"></app-file>
+      <mat-checkbox color="primary" [(ngModel)]="onlyTeacherList[index]"><span style="white-space: nowrap">Only Teacher</span></mat-checkbox>
+    </div>
+  }
+  <app-file [accept]="acceptedFileTypes" [setOwnFile]=false text="Add Document" (fileChange)="addFile($event)"></app-file>
+  <app-button class="create-button" text="Update Lesson" icon="add" [disabled]="!isFormValid()" (click)="updateLesson()"></app-button>
 </div>

@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LessonDto} from "../../service/api/entities/LessonDto";
 import {ApiService, baseUrl} from "../../service/api/api.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {UserDto} from "../../service/api/entities/UserDto";
+import {UserRole} from "../../service/api/entities/UserRole";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-lesson',
@@ -11,36 +14,39 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 })
 export class LessonComponent implements OnInit {
   lesson: LessonDto | undefined;
-  teacherPDF: SafeResourceUrl | undefined;
-  studentPDF: SafeResourceUrl | undefined;
-  currentTab = 0;
+  user: UserDto;
+  fileUrls: { [key: number]: SafeResourceUrl } = {};
 
   constructor(private activatedRoute: ActivatedRoute,
+              private location: Location,
               private apiService: ApiService,
               private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
+    this.apiService.getOwnUser().subscribe(user => {
+      this.user = user;
+    });
+
     this.activatedRoute.params.subscribe(params => {
       this.apiService.getLessonById(params['id']).subscribe(lesson => {
         this.lesson = lesson;
-        this.teacherPDF = getLessonTeacherPDF(lesson.id, this.sanitizer);
-        this.studentPDF = getLessonStudentPDF(lesson.id, this.sanitizer);
+
+        this.lesson!.files.forEach(file => {
+          this.fileUrls[file.id] = this.sanitizer.bypassSecurityTrustResourceUrl(baseUrl + "/files/" + file.id);
+        });
       });
     });
   }
 
+
   goBack() {
-    window.history.back();
+    this.location.back();
   }
-}
 
-export function getLessonStudentPDF(lessonId: string, sanitizer: DomSanitizer) {
-  const url = baseUrl + "/lesson/" + lessonId + "/student-pdf";
-  return sanitizer.bypassSecurityTrustResourceUrl(url);
-}
+  isFileImageType(fileType: string) {
+    return fileType.startsWith('image/');
+  }
 
-export function getLessonTeacherPDF(lessonId: string, sanitizer: DomSanitizer) {
-  const url = baseUrl + "/lesson/" + lessonId + "/teacher-pdf";
-  return sanitizer.bypassSecurityTrustResourceUrl(url);
+  protected readonly UserRole = UserRole;
 }

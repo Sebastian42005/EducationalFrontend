@@ -2,10 +2,10 @@
   <mat-tab-group color="primary" [(selectedIndex)]="currentTabIndex">
     <mat-tab label="Login">
       <div class="login-container">
-        <app-input [required]="true"[color]="primaryColor" placeholder="Email" (textChange)="loginEmail = $event"></app-input>
+        <app-input [required]="true"[color]="primaryColor" placeholder="Email" (textChange)="loginEmail = $event" (keyup.enter)="login(loginEmail, loginPassword, true)"></app-input>
         <app-input [color]="primaryColor" placeholder="Password" type="password"
-                   (textChange)="loginPassword = $event"></app-input>
-        <app-button [disabled]="getIsLoginDisabled()" text="Login" icon="login" (click)="login()"></app-button>
+                   (textChange)="loginPassword = $event"  (keyup.enter)="login(loginEmail, loginPassword, true)"></app-input>
+        <app-button [disabled]="getIsLoginDisabled()" text="Login" icon="login" (click)="login(loginEmail, loginPassword, true)"></app-button>
       </div>
     </mat-tab>
     <mat-tab label="Register">
@@ -22,8 +22,9 @@
                    (textChange)="registerFirstName = $event"></app-input>
         <app-input [color]="primaryColor" placeholder="Lastname"
                    (textChange)="registerLastName = $event"></app-input>
-        <app-input [color]="primaryColor" placeholder="Password" type="password"
-                   (textChange)="registerPassword = $event"></app-input>
+        <app-input [color]="primaryColor" placeholder="Password" type="password" (textChange)="registerPassword = $event"></app-input>
+        <app-input [color]="primaryColor" placeholder="Confirm password" type="password"
+                   (textChange)="registerConfirmPassword = $event"></app-input>
         <app-select2 [color]="primaryColor" (selectedOptionChange)="setRole($event)" placeholder="Role"
                      [options]="options"></app-select2>
         <app-button [disabled]="getIsRegisterDisabled()" text="Register" icon="login"

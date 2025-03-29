@@ -1,7 +1,14 @@
 <div class="container">
   <h1>Create Lesson</h1>
   <app-input [color]="primaryColor" class="input" (textChange)="name = $event" placeholder="Name"></app-input>
-  <app-file text="Student PDF" accept="application/pdf" (fileChange)="studentFile = $event"></app-file>
-  <app-file text="Teacher PDF" accept="application/pdf" (fileChange)="teacherFile = $event"></app-file>
+  <app-text-area class="input" placeholder="Description" (onChange)="description = $event"></app-text-area>
+  @for (file of files; track file; let index = $index) {
+    <div class="horizontal-div">
+      <mat-icon style="width: 50px; height: 30px; font-size: 30px; cursor: pointer; margin-right: 10px" (click)="removeFile(index)">close</mat-icon>
+      <app-file style="max-width: 62%" [accept]="acceptedFileTypes" [showIcon]=false [file]="file"></app-file>
+      <mat-checkbox color="primary" [(ngModel)]="onlyTeacherList[index]"><span style="white-space: nowrap">Only Teacher</span></mat-checkbox>
+    </div>
+  }
+  <app-file [accept]="acceptedFileTypes" [setOwnFile]=false text="Add Document" (fileChange)="addFile($event)"></app-file>
   <app-button class="create-button" text="Create" icon="add" (click)="createLesson()"></app-button>
 </div>

@@ -2,7 +2,7 @@
     <label [for]="text">
         <div [ngClass]="selectedFile ? 'file-selected' : 'file-select'">
             <span class="file-text">{{ text }}</span>
-            @if (selectedFile) {
+            @if (selectedFile && showIcon) {
                 <mat-icon>check</mat-icon>
             }
         </div>
