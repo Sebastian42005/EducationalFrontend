@@ -13,27 +13,35 @@ import {AdminSubjectsComponent} from "./pages/admin/admin-subjects/admin-subject
 import {ChatComponent} from "./chat/chat.component";
 import {BookWorkshopComponent} from "./pages/workshop/book-workshop/book-workshop.component";
 import {WorkshopChatComponent} from "./pages/workshop/workshop-chat/workshop-chat.component";
+import {ClassRoomListComponent} from "./pages/class-room-list/class-room-list.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
 
 const routes: Routes = [
-    {path: '', component: HomePageComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'subject', component: LandingPageComponent},
-    {path: 'workshop', component: WorkshopComponent},
-    {path: 'workshop/book', component: BookWorkshopComponent},
-    {path: 'workshop/:id', component: WorkshopChatComponent},
-    {path: 'subject/:id', component: SubjectComponent},
-    {path: 'lesson/:id', component: LessonComponent},
-    {path: 'admin/user/:id', component: AdminUserEditComponent},
-    {path: 'admin/user', component: AdminUserComponent},
-    {path: 'admin/subject', component: AdminSubjectsComponent},
-    {path: 'admin/subject/:id', component: SubjectComponent},
-    {path: 'admin/subject/:id/edit', component: AdminSubjectEditComponent},
-    {path: 'admin/workshop', component: ChatComponent},
+  { path: '', component: HomePageComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'subject', component: LandingPageComponent },
+  { path: 'workshop', component: WorkshopComponent },
+  { path: 'workshop/book', component: BookWorkshopComponent },
+  { path: 'workshop/:id', component: WorkshopChatComponent },
+  { path: 'subject/:id', component: SubjectComponent },
+  { path: 'lesson/:id', component: LessonComponent },
+  { path: 'admin/user/:id', component: AdminUserEditComponent },
+  { path: 'admin/user', component: AdminUserComponent },
+  { path: 'admin/subject', component: AdminSubjectsComponent },
+  { path: 'admin/subject/:id', component: SubjectComponent },
+  { path: 'admin/subject/:id/edit', component: AdminSubjectEditComponent },
+  { path: 'admin/workshop', component: ChatComponent },
+  { path: 'class-rooms', component: ClassRoomListComponent },
+  { path: 'teacher-dashboard', component: DashboardComponent },
+  { path: 'workshop-dashboard', component: DashboardComponent },
+  { path: 'modules-dashboard', component: DashboardComponent },
+  { path: 'classroom-dashboard', component: DashboardComponent },
+  { path: 'explore-modules-dashboard', component: DashboardComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

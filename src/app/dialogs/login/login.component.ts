@@ -26,9 +26,9 @@ export class LoginComponent {
   profileImage: File | undefined;
   profileImageUrl: string | undefined;
 
-  constructor(private apiService: ApiService,
-              private matDialogRef: MatDialogRef<LoginComponent>,
-              private router: Router) {
+  constructor(private readonly apiService: ApiService,
+              private readonly matDialogRef: MatDialogRef<LoginComponent>,
+              private readonly router: Router) {
   }
 
   getIsLoginDisabled() {
@@ -53,6 +53,8 @@ export class LoginComponent {
       })
       if (response.role === "ROLE_ADMIN") {
         this.router.navigate(['/admin']).then();
+      } else if (response.role === "ROLE_TEACHER") {
+        this.router.navigate(['/teacher-dashboard']).then();
       } else {
         this.router.navigate(['/home']).then();
       }

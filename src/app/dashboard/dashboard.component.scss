@@ -1,0 +1,76 @@
+@import "../../styles.scss";
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(to left top, white, rgba($app-secondary-color, 0.5));
+}
+
+.main-container {
+  padding: 100px 24px 48px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 36px;
+  font-weight: 500;
+  color: $app-primary-color;
+  margin-bottom: 8px;
+}
+
+.main-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.grid-container {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  text-decoration: none;
+  border-radius: 10px;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .dashboard-icon {
+    font-size: 48px;
+    line-height: 1;
+    height: 48px;
+    width: 48px;
+    padding: 8px;
+    border-radius: 15px;
+    display: inline-block;
+    color: $app-primary-color;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: black;
+    margin-bottom: 8px;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+.back-btn-container {
+  margin-top: 40px;
+}

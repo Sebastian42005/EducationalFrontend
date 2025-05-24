@@ -20,11 +20,11 @@ export class AppComponent implements OnInit, OnDestroy {
   menuOpened = false;
   private globalClickListener: () => void;
 
-  constructor(private matDialog: MatDialog,
-              private router: Router,
-              private apiService: ApiService,
-              private elementRef: ElementRef,
-              private renderer: Renderer2) {
+  constructor(private readonly matDialog: MatDialog,
+              private readonly router: Router,
+              private readonly apiService: ApiService,
+              private readonly elementRef: ElementRef,
+              private readonly renderer: Renderer2) {
   }
 
   login() {

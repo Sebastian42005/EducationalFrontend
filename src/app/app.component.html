@@ -1,25 +1,26 @@
 <header>
   <div class="title-div">
-    <img class="logo" src="assets/logo.png" (click)="navigateToHome()">
-  </div>
-  <div class="center-links">
-    @switch (user?.role) {
-      @case (UserRole.TEACHER) {
-        <a routerLink="subject">Subjects</a>
-        <a routerLink="workshop">Workshop</a>
-      }
-      @case (UserRole.ADMIN) {
-        <a routerLink="admin/user">User</a>
-        <a routerLink="admin/subject">Subjects</a>
-        <a routerLink="admin/workshop">Workshops</a>
-      }
-      @case (UserRole.STUDENT) {
-        <a routerLink="subject">Subjects</a>
-      }
-    }
+    <h1 style="cursor: pointer" (click)="navigateToHome()">Educ[AI]tional</h1>
   </div>
   <div class="links">
-    <span>DE / EN</span>
+    <div class="user-links">
+      @switch (user?.role) {
+        @case (UserRole.TEACHER) {
+          <a routerLink="teacher-dashboard">Dashboard</a>
+          <a routerLink="workshop-dashboard">Workshop</a>
+          <a routerLink="modules-dashboard">Modules</a>
+          <a routerLink="classroom-dashboard">Classrooms</a>
+        }
+        @case (UserRole.ADMIN) {
+          <a routerLink="admin/user">User</a>
+          <a routerLink="admin/subject">Subjects</a>
+          <a routerLink="admin/workshop">Workshops</a>
+        }
+        @case (UserRole.STUDENT) {
+          <a routerLink="subject">Subjects</a>
+        }
+      }
+    </div>
     @if (!isLoggedIn) {
       <span class="login-btn" (click)="login()">Login</span>
     }

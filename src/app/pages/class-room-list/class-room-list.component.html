@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="list">
+    @for (subject of classRoomList; track subject.id) {
+      <div class="item" (click)="showSubject(subject)">
+        <div class="image-wrapper">
+          <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
+        </div>
+        <span>{{ subject.name }}</span>
+      </div>
+    }
+  </div>
+</div>

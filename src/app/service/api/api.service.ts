@@ -8,6 +8,7 @@ import {LessonDto} from "./entities/LessonDto";
 import {WorkshopDto} from "./entities/WorkshopDto";
 import {webSocket} from "rxjs/webSocket";
 import {Message} from "./entities/Message";
+import {ClassDto} from "./entities/ClassDto";
 
 
 @Injectable({
@@ -15,7 +16,7 @@ import {Message} from "./entities/Message";
 })
 export class ApiService {
 
-  private chatSocket = webSocket("ws://localhost:8080/chat")
+  private chatSocket = webSocket(`ws://${address}/chat`)
 
   constructor(private httpClient: HttpClient) {
   }
@@ -102,10 +103,6 @@ export class ApiService {
 
   createStudent(studentEntity: any): Observable<any> {
     return this.post<any>(`/students`, studentEntity);
-  }
-
-  getStudentSubjects(id: number): Observable<any[]> {
-    return this.get<any[]>(`/students/${id}/subjects`);
   }
 
   // SubjectController Requests
@@ -265,6 +262,29 @@ export class ApiService {
     });
   }
 
+  getClassRooms(): Observable<ClassDto[]> {
+    return this.get<ClassDto[]>(`/class/all`);
+  }
+
+  createClass(name: string, description: string): Observable<ClassDto> {
+    return this.post('/class/create-class', {
+      name,
+      description
+    })
+  }
+
+  joinClass(id: number): Observable<ClassDto> {
+    return this.put(`/class/join-class/${id}`, null)
+  }
+
+  createRoomCode(id: number): Observable<ClassDto> {
+    return this.put(`/class/create-room-code/${id}`, null)
+  }
+
+  getStudentSubjects(): Observable<SubjectDto[]> {
+    return this.get<SubjectDto[]>("/class/get-student-subjects")
+  }
+
   getUsersWithWorkshopRequests() {
     return this.get<UserDto[]>("/user/workshop-requests")
   }
@@ -304,4 +324,6 @@ export class ApiService {
   }
 }
 
-export const baseUrl = 'http://localhost:8080';
+//api.educaitional.at
+export const address = 'localhost:8080';
+export const baseUrl = `http://${address}`;

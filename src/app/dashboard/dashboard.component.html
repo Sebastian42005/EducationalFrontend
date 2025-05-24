@@ -1,0 +1,14 @@
+<main class="main-container">
+  <h1 class="main-title">{{ title }}</h1>
+  <p class="main-subtitle">{{ subtitle }}</p>
+
+  <section class="grid-container">
+    <mat-card *ngFor="let item of navItems" class="dashboard-card" [routerLink]="item.href">
+      <mat-icon [style]="{'color': item.color ? item.color : item.backgroundColor ? 'white' : null, 'background-color': item.backgroundColor}" class="dashboard-icon">{{ item.icon }}</mat-icon>
+      <h3 class="card-title">{{ item.label }}</h3>
+      <p class="card-text">
+        {{ item.sublabel }}
+      </p>
+    </mat-card>
+  </section>
+</main>

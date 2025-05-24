@@ -8,8 +8,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background: $app-primary-color;
-  color: white;
+  background: white;
+  color: black;
 
   .title-div {
     display: flex;
@@ -36,32 +36,35 @@ header {
     }
   }
 
-  .center-links {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  .user-links {
     display: flex;
     flex-direction: row;
     gap: 40px;
 
-    & > * {
-      position: relative;
-    }
-
-    & > *:not(:last-child)::after {
-      content: '|';
-      position: absolute;
-      right: -23px;
-      color: $app-accent-color;
-    }
-
     a {
-      color: $app-accent-color;
+      color: black;
       font-size: 1.4em;
       text-decoration: none;
+      position: relative;
+      padding-bottom: 2px;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: $app-primary-color;
+        transition: width 0.3s ease;
+      }
 
       &:hover {
-        color: $app-secondary-color;
+        color: $app-primary-color;
+
+        &::after {
+          width: 100%;
+        }
       }
     }
   }
@@ -73,11 +76,11 @@ header {
     align-items: center;
 
     span {
-      color: $app-accent-color;
+      color: black;
       cursor: pointer;
 
       &:hover {
-        color: $app-secondary-color;
+        color: $app-primary-color;
       }
     }
 
@@ -87,7 +90,7 @@ header {
       transition: 0.2s;
 
       &:hover {
-        color: $app-secondary-color;
+        color: $app-primary-color;
       }
     }
   }
