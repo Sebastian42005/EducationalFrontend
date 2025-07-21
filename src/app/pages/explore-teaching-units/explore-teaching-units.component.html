@@ -1,0 +1,21 @@
+<div class="body">
+  <div class="container">
+    <h1>Meine Lehreinheiten</h1>
+    <span class="two-line-span">Greife auf die Lerneinheiten und Materialen zu, die von deiner Lehrkraft für dich freigeschaltet wurden.</span>
+    <div class="list" [ngStyle]="{'grid-template-columns': subjectList.length > 2 ? 'repeat(2, 1fr)' : '1fr'}">
+      @for (subject of subjectList; track subject.id) {
+        <div class="item" (click)="showSubject(subject)">
+          <div class="image-wrapper">
+            <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
+          </div>
+          <span>{{ subject.name }}</span>
+        </div>
+      }
+    </div>
+    <div class="floating-div">
+      <span>Interessiert, welche Themen dich bei EducAItional erwarten?</span>
+      <span>Klicke hier für einen Überblick!</span>
+    </div>
+    <button mat-raised-button color="primary">Endecke unsere Lehreinheiten</button>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+@import "src/styles.scss";
+
+.profile-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.profile-picture-section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .profile-pic-label {
+    display: block;
+    position: relative;
+    border-radius: 50%;
+
+    .profile-pic-preview {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .edit-icon-overlay {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    background-color: $app-secondary-color;
+    border-radius: 50%;
+    padding: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
+.profile-info-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h2 {
+    font-size: 1.8rem;
+    margin: 0 0 4px 0;
+  }
+
+  .email {
+    font-size: 1rem;
+    color: #666;
+  }
+
+  .role {
+    font-weight: 500;
+    color: $app-primary-color;
+    margin-top: 4px;
+  }
+
+  .view-mode {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    app-input {
+      width: 100%;
+    }
+  }
+
+  .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+  }
+}

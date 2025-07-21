@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 export class LandingPageComponent implements OnInit {
   subjectList: SubjectDto[] = [];
 
-  constructor(private apiService: ApiService,
-              private router: Router) {
+  constructor(private readonly apiService: ApiService,
+              private readonly router: Router) {
   }
   ngOnInit(): void {
     this.loadSubjects();

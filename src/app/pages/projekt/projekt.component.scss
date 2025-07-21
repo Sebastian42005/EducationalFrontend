@@ -1,0 +1,61 @@
+@import "src/styles.scss";
+
+.container {
+  padding: 2rem 0;
+}
+
+.projekt-container {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+  line-height: 1.7;
+}
+
+.projekt-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: $app-primary-color;
+}
+
+.projekt-container h2 {
+  font-size: 1.4rem;
+  color: $app-secondary-color;
+  margin-top: 2rem;
+}
+
+.projekt-container ul {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+  list-style: disc;
+}
+
+.projekt-container blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid #ccc;
+  font-style: italic;
+  color: #666;
+}
+
+.abschluss {
+  background: rgba($app-secondary-color, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+
+  h2 {
+    margin: 0;
+    color: $app-primary-color;
+  }
+}
+
+.projekt-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

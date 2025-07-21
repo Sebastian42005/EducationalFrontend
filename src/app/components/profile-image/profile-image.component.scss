@@ -3,7 +3,7 @@
 .profile-div {
   cursor: pointer;
   transition: 200ms;
-  color: $app-accent-color;
+  color: $app-primary-color;
 
   &:hover {
     color: $app-secondary-color;
@@ -24,7 +24,7 @@
   }
 
   .white {
-    border-color: $app-accent-color;
+    border-color: $app-primary-color;
   }
 
   div {

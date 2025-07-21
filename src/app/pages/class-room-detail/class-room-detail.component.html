@@ -1,0 +1,82 @@
+<main *ngIf="!isLoading && classData" class="class-detail-container">
+  <mat-card class="class-card">
+    <div class="class-header">
+      <img [src]="getClassImage()" class="class-image"/>
+      <div class="class-info">
+        <div class="class-info-no-button">
+          <h1>{{ classData.name }}</h1>
+          <p>{{ classData.description }}</p>
+
+          <div class="meta">
+            <mat-chip color="primary" selected>
+              Lehrkraft: {{ teacher?.firstName }} {{teacher?.lastName}}
+            </mat-chip>
+            <mat-chip
+              *ngIf="!isRoomCodeExpired() && classData.roomCode"
+              style="cursor: pointer"
+              (click)="copyCodeToClipboard()"
+              color="primary"
+              selected>
+              Room Code: {{ classData.roomCode }}
+            </mat-chip>
+
+            <mat-chip *ngIf="isRoomCodeExpired()" color="warn" selected>
+              Room Code abgelaufen
+            </mat-chip>
+
+            <mat-chip *ngIf="!classData.roomCode" color="warn" selected>
+              Room Code: Not yet generated
+            </mat-chip>
+
+            <mat-chip color="accent" selected>
+              Läuft ab: {{ classData.expiresAt | date: 'medium' }}
+            </mat-chip>
+          </div>
+        </div>
+        @if (user?.role != UserRole.STUDENT) {
+          <button
+            mat-stroked-button
+            color="primary"
+            (click)="createRoomCode()"
+            [disabled]="creatingCode"
+            style="margin-top: 16px"
+          >
+            {{ creatingCode ? 'Creating...' : 'Generate Room Code' }}
+          </button>
+        }
+      </div>
+    </div>
+  </mat-card>
+
+  <div class="subject-lesson-container">
+    @if (clickedSubject != null) {
+      <mat-icon class="back-arrow" (click)="goBack()">arrow_back</mat-icon>
+      <app-input [color]="primaryColor" [isSearch]=true class="search" placeholder="Search Lesson..."
+                 (textChange)="search($event)"></app-input>
+      <mat-list class="lesson-list">
+        @for (lesson of filteredLessons; track lesson.id) {
+          <div class="item">
+            <div class="menu-div">
+              <div class="info-div" (click)="showLesson(lesson)">
+                <mat-icon class="menu-icon">school</mat-icon>
+                <button class="menu-button">{{ lesson.name }}</button>
+              </div>
+              <mat-checkbox [checked]=""></mat-checkbox>
+            </div>
+          </div>
+        }
+      </mat-list>
+    } @else {
+      <div class="subject-list">
+        @for (subject of subjects; track subject.id) {
+          <div class="item" (click)="subjectClick(subject)">
+            <div class="image-wrapper">
+              <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
+            </div>
+            <span>{{ subject.name }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</main>

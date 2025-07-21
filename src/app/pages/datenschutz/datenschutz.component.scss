@@ -1,0 +1,42 @@
+@import "src/styles.scss";
+
+.container {
+  padding: 2rem 0;
+}
+
+.datenschutz-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  line-height: 1.6;
+}
+
+.datenschutz-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.datenschutz-container .stand {
+  font-size: 0.9rem;
+  color: gray;
+  margin-bottom: 2rem;
+}
+
+.datenschutz-container section {
+  margin-bottom: 1.5rem;
+}
+
+.datenschutz-container h2 {
+  font-size: 1.2rem;
+  color: $app-primary-color;
+  margin-top: 1.5rem;
+}
+
+.datenschutz-container a {
+  color: $app-primary-color;
+  text-decoration: underline;
+}

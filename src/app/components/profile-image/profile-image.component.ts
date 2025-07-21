@@ -20,7 +20,7 @@ export class ProfileImageComponent {
   profileImgFailed = false;
   @Input() size: number = 50;
 
-  constructor(private apiService: ApiService) {
+  constructor(private readonly apiService: ApiService) {
   }
 
   getProfileImage() {

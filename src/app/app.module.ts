@@ -9,7 +9,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {InputComponent} from './components/input/input.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ButtonComponent} from './components/button/button.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
@@ -48,78 +48,98 @@ import {UserListComponent} from "./chat/user-list/user-list.component";
 import {ChatComponent} from "./chat/chat.component";
 import {UserInfoComponent} from "./chat/user-info/user-info.component";
 import {MessageListComponent} from "./chat/message-list/message-list.component";
-import { BookWorkshopComponent } from './pages/workshop/book-workshop/book-workshop.component';
-import { WorkshopChatComponent } from './pages/workshop/workshop-chat/workshop-chat.component';
-import { ChangeWorkshopStateDialogComponent } from './dialogs/change-workshop-state-dialog/change-workshop-state-dialog.component';
+import {BookWorkshopComponent} from './pages/workshop/book-workshop/book-workshop.component';
+import {WorkshopChatComponent} from './pages/workshop/workshop-chat/workshop-chat.component';
+import {
+  ChangeWorkshopStateDialogComponent
+} from './dialogs/change-workshop-state-dialog/change-workshop-state-dialog.component';
 import {AdminLessonEditComponent} from "./pages/admin/admin-lessons/admin-lesson-edit/admin-lesson-edit.component";
+import {CreateClassRoomComponent} from "./pages/create-class-room/create-class-room.component";
+import { ClassRoomDetailComponent } from "./pages/class-room-detail/class-room-detail.component";
+import { MatCard } from "@angular/material/card";
+import { MatChip } from "@angular/material/chips";
+import { TopicRequestDialogComponent } from "./dialogs/topic-request-dialog/topic-request-dialog.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { TeamComponent } from "./pages/team/team.component";
+import { ProjektComponent } from "./pages/projekt/projekt.component";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomePageComponent,
-        LoginComponent,
-        InputComponent,
-        ButtonComponent,
-        SelectComponent,
-        Select2Component,
-        PopupInfoComponent,
-        DropdownMenuComponent,
-        CreateSubjectDialogComponent,
-        LandingPageComponent,
-        AdminUserComponent,
-        AdminSubjectsComponent,
-        SubjectComponent,
-        CreateLessonDialogComponent,
-        FileComponent,
-        LessonComponent,
-        AdminUserEditComponent,
-        AdminSubjectEditComponent,
-        WorkshopComponent,
-        TextAreaComponent,
-        AdminWorkshopComponent,
-        UserListComponent,
-        ChatComponent,
-        UserInfoComponent,
-        MessageListComponent,
-        BookWorkshopComponent,
-        WorkshopChatComponent,
-        ChangeWorkshopStateDialogComponent,
-        AdminLessonEditComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        MatTabsModule,
-        MatDialogModule,
-        MatInputModule,
-        HttpClientModule,
-        FormsModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatCheckbox,
-        MatIconModule,
-        MatTabsModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatListModule,
-        MatMenuModule,
-        ProfileImageComponent,
-        MatDatepickerModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatSortModule,
-        RolePipe,
-    ],
-    providers: [],
-    exports: [
-        SubjectComponent,
-        CreateSubjectDialogComponent,
-        InputComponent,
-        SelectComponent
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    LoginComponent,
+    InputComponent,
+    ButtonComponent,
+    SelectComponent,
+    Select2Component,
+    PopupInfoComponent,
+    DropdownMenuComponent,
+    CreateSubjectDialogComponent,
+    LandingPageComponent,
+    AdminUserComponent,
+    AdminSubjectsComponent,
+    SubjectComponent,
+    CreateLessonDialogComponent,
+    FileComponent,
+    LessonComponent,
+    AdminUserEditComponent,
+    AdminSubjectEditComponent,
+    WorkshopComponent,
+    TextAreaComponent,
+    AdminWorkshopComponent,
+    UserListComponent,
+    ChatComponent,
+    UserInfoComponent,
+    MessageListComponent,
+    BookWorkshopComponent,
+    WorkshopChatComponent,
+    ChangeWorkshopStateDialogComponent,
+    AdminLessonEditComponent,
+    CreateClassRoomComponent,
+    ClassRoomDetailComponent,
+    TopicRequestDialogComponent,
+    ProfileComponent,
+    TeamComponent,
+    ProjektComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatTabsModule,
+    MatDialogModule,
+    MatInputModule,
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatCheckbox,
+    MatIconModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatListModule,
+    MatMenuModule,
+    ProfileImageComponent,
+    MatDatepickerModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSortModule,
+    RolePipe,
+    ReactiveFormsModule,
+    MatCard,
+    MatChip,
+  ],
+  providers: [],
+  exports: [
+    SubjectComponent,
+    CreateSubjectDialogComponent,
+    InputComponent,
+    SelectComponent,
+    ButtonComponent
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="projekt-container">
+    <h1>EducAItional – Bildung für das 21. Jahrhundert</h1>
+
+    <section>
+      <h2>Für Lehrkräfte & Schulen</h2>
+      <p>
+        Das Bildungssystem verändert sich langsam, aber die Welt rasend schnell.<br>
+        <strong>Wir bauen die Brücke dazwischen.</strong>
+      </p>
+      <p>
+        EducAItional ist eine digitale Lernplattform, die Schulen und Lehrkräfte dabei unterstützt, Unterricht neu zu
+        denken – mit Themen wie KI, Finanzbildung, Social Media und psychischer Gesundheit.
+      </p>
+      <ul>
+        <li>Fertig konzipierte Lerneinheiten mit Ablaufplan, Materialien & Präsentationen</li>
+        <li>Workshops mit unserem Team – vor Ort oder digital</li>
+        <li>Innovative Tools: KI-Experimente, Simulationen, Finanzspiele u.v.m.</li>
+      </ul>
+
+      <p><strong>Was macht EducAItional anders?</strong></p>
+      <blockquote>
+        Wir leben in einer Welt voller Informationen – aber ohne Anleitung, wie wir damit umgehen.
+      </blockquote>
+      <p>
+        Deshalb fragen wir: Was ist Wahrheit im Zeitalter von Social Media? Was bedeutet es, menschlich zu sein? Wie
+        gehe
+        ich verantwortungsvoll mit Geld um? Lernen heißt für uns: erleben, reflektieren, handeln.
+      </p>
+    </section>
+
+    <section>
+      <h2>Für Schülerinnen & Schüler</h2>
+      <p>
+        Du lernst in der Schule vieles – aber nicht alles, was du für dein Leben brauchst. <br>
+        <strong>Wir ergänzen das, was oft zu kurz kommt.</strong>
+      </p>
+      <ul>
+        <li>Wie beeinflusst KI dein Denken?</li>
+        <li>Wie erkennst du Manipulation durch Social Media?</li>
+        <li>Was erwartet dich nach der Schule?</li>
+      </ul>
+      <p>
+        EducAItional stellt dich ins Zentrum: mit interaktiven Experimenten, kreativen Aufgaben und Diskussionen auf
+        Augenhöhe.
+      </p>
+      <p>
+        Wir helfen dir, die richtigen Fragen zu stellen – und deine eigenen Antworten zu finden.
+      </p>
+    </section>
+
+    <section class="abschluss">
+      <h2>Unsere Philosophie</h2>
+      <p>
+        <em>Verstehen, was ist. Reflektieren, was sein könnte. Handeln, um es möglich zu machen.</em><br>
+        Willkommen bei EducAItional.
+      </p>
+    </section>
+
+    <div class="projekt-actions">
+      <button mat-raised-button color="primary" routerLink="/explore-teaching-units">Erkunde unsere Lerneinheiten & Workshops</button>
+      <button mat-raised-button color="primary" routerLink="/team">Erfahre mehr über unser Team</button>
+      <button mat-raised-button color="primary" [disabled]="isLoggedIn" (click)="publicLoginEmitter.emit()">Melde dich hier an</button>
+    </div>
+  </div>
+</div>

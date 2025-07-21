@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="team-container">
+    <h1>Erfahre mehr über unser Team</h1>
+
+    <section>
+      <h2>Unsere Geschichte</h2>
+      <p>
+        EducAItional wurde vor über einem Jahr während einer Diskussion unter engen Freunden gegründet.
+        Als wir gemeinsam über die größten Herausforderungen des 21. Jahrhunderts nachdachten,
+        stellten wir uns immer wieder dieselbe Frage:
+      </p>
+      <blockquote>Warum hat uns darüber nie jemand etwas beigebracht?</blockquote>
+      <p>
+        So entstand die Idee, EducAItional aufzubauen – ein Projekt, das genau diese Lücke im Bildungssystem schließen
+        soll.
+        Wir möchten wichtige Fragen und Themen dorthin bringen, wo sie wirklich zählen: ins Klassenzimmer.
+      </p>
+    </section>
+
+    <section>
+      <h2>Das Team hinter EducAItional</h2>
+
+      <div class="person">
+        <h3>Tristan</h3>
+        <p>
+          Hi, ich bin Tristan! Ich bin 25 Jahre alt und habe EducAItional gegründet, weil ich Bildung als Schlüssel
+          zu kritischem Denken und Verantwortung sehe. Als Jurist habe ich mich intensiv mit den rechtlichen und
+          gesellschaftlichen Herausforderungen unserer Zeit beschäftigt – vom Einfluss künstlicher Intelligenz bis
+          zu den Entwicklungen der Finanzwelt. Gleichzeitig habe ich als Leiter verschiedener Bewegungskurse erlebt,
+          wie wichtig es ist, junge Menschen zu ermutigen, über sich selbst hinauszuwachsen.
+        </p>
+        <p>
+          Bei EducAItional entwickle ich unsere Themenblöcke und den inhaltlichen Aufbau unserer Plattform. Mir ist
+          besonders wichtig, dass unsere Materialien nicht nur Wissen, sondern auch Neugier und den Mut vermitteln,
+          die Welt aktiv zu verändern.
+        </p>
+      </div>
+
+      <div class="person">
+        <h3>Lauren</h3>
+        <p>
+          Hallo, ich bin Lauren – ebenfalls 25 Jahre alt! Als Absolventin der Rechts- und Medizinwissenschaften aus
+          Sydney (Australien) und mit Erfahrung im Bereich künstlicher Intelligenz, bringe ich einen interdisziplinären
+          Hintergrund und viel Begeisterung für innovative Bildung mit. Ich unterstütze EducAItional dabei, klare und
+          inspirierende englischsprachige Inhalte zu entwickeln und unsere strategische Ausrichtung mitzugestalten.
+        </p>
+        <p>
+          Ich bin überzeugt, dass EducAItional eine wichtige Lücke im heutigen Bildungssystem schließt, indem es genau
+          die Herausforderungen anspricht, die in Schulen oft zu kurz kommen – die Art von Wissen, die ich mir selbst
+          als Schülerin gewünscht hätte.
+        </p>
+      </div>
+
+      <div class="person">
+        <h3>Sebi</h3>
+        <p>
+          Hi, ich bin Sebi, 20 Jahre alt und seit über einem Jahr als Full Stack Developer unterwegs. Nach meiner Ausbildung
+          zum Applikationsentwickler war für mich klar: Ich will nicht nur programmieren, sondern mit dem, was ich baue,
+          wirklich etwas bewirken.
+        </p>
+        <p>
+          Bei EducAItional kümmere ich mich um alles rund um unsere Plattform – vom Frontend bis zum Backend.
+          Mir ist wichtig, dass unsere Tools nicht nur gut funktionieren, sondern auch Spaß machen und leicht zugänglich
+          sind.
+        </p>
+      </div>
+    </section>
+
+    <section class="vision">
+      <h2>Unsere gemeinsame Vision</h2>
+      <p>
+        Wir glauben fest daran, dass jede Schülerin und jeder Schüler die Welt mitgestalten und zu einem besseren Ort
+        machen kann.
+        Deshalb möchten wir mit EducAItional eine Bildung schaffen, die sie dabei unterstützt, neue Perspektiven zu
+        entdecken und ihren eigenen Weg zu gehen.
+      </p>
+    </section>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" routerLink="projekt">Entdecke unser Projekt</button>
+      <button mat-raised-button color="primary" routerLink="/explore-teaching-units">Erkunde unsere Lerneinheiten & Workshops</button>
+      <button mat-raised-button color="primary" [disabled]="isLoggedIn" (click)="publicLoginEmitter.emit()">Melde dich hier an</button>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,20 @@
-<div class="container">
-  <div class="list">
-    @for (subject of classRoomList; track subject.id) {
-      <div class="item" (click)="showSubject(subject)">
-        <div class="image-wrapper">
-          <img [src]="getImage(subject.id)" [alt]="subject.name + ' Image'">
-        </div>
-        <span>{{ subject.name }}</span>
+<div class="body">
+  @if (classRoomList.length === 0) {
+    <div class="empty-list">
+      <h1>You don't have any classrooms yet</h1>
+    </div>
+  } @else {
+    <div class="container">
+      <div class="list">
+        @for (classDto of classRoomList; track classDto.id) {
+          <div class="item" (click)="showClass(classDto)">
+            <div class="image-wrapper">
+              <img [src]="getImage(classDto.id)" [alt]="classDto.name + ' Image'">
+            </div>
+            <span>{{ classDto.name }}</span>
+          </div>
+        }
       </div>
-    }
-  </div>
+    </div>
+  }
 </div>

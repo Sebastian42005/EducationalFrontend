@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Beitreten</h1>
+  <span>Gib einen Raum-Code ein, uim deinem Klassenzimmer virtuell beizutreten</span>
+  <div class="card-img-div">
+    <div class="card-div">
+      <mat-form-field appearance="fill">
+        <mat-label>Raum-Code</mat-label>
+        <input matInput type="number" [(ngModel)]="classroomCode" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="joinRoom()" [disabled]="!classroomCode">Beitreten</button>
+    </div>
+    <img src="assets/schule.png">
+  </div>
+</div>

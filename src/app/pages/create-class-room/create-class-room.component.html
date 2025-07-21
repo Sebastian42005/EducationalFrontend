@@ -1,0 +1,26 @@
+<main>
+  <h1 class="title">Create Classroom</h1>
+  <span class="subtitle">
+    Create a digital connection to your class and invite students to join
+  </span>
+  <div class="horizontal-div">
+    <form [formGroup]="classroomForm" (ngSubmit)="createClassroom()">
+      <app-file text="Image" accept="application/png, application/webp, application/jpeg"
+                (fileChange)="image = $event"></app-file>
+      <mat-form-field>
+        <mat-label>Classroom Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="isCreating || classroomForm.invalid">
+        Create Classroom
+      </button>
+    </form>
+    <img src="assets/robot.png" />
+  </div>
+</main>

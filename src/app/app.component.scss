@@ -1,5 +1,9 @@
 @import "src/styles.scss";
 
+.content-wrapper {
+  background: linear-gradient(to left top, white, rgba($app-secondary-color, 0.5));
+}
+
 header {
   position: relative;
   display: flex;

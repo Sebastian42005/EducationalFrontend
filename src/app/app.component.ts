@@ -1,11 +1,11 @@
-import {Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {LoginComponent, loginEmitter} from "./dialogs/login/login.component";
-import {showMessageEmitter} from "./components/popup-info/popup-info.component";
-import {Router} from "@angular/router";
-import {ApiService} from "./service/api/api.service";
-import {UserDto} from "./service/api/entities/UserDto";
-import {UserRole} from "./service/api/entities/UserRole";
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { LoginComponent, loginEmitter } from "./dialogs/login/login.component";
+import { showMessageEmitter } from "./components/popup-info/popup-info.component";
+import { Router } from "@angular/router";
+import { ApiService } from "./service/api/api.service";
+import { UserDto } from "./service/api/entities/UserDto";
+import { UserRole } from "./service/api/entities/UserRole";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,6 @@ export class AppComponent implements OnInit, OnDestroy {
   showPopup = false;
   isLoggedIn = false;
   user: UserDto | undefined;
-  profileImgFailed = false;
   menuOpened = false;
   private globalClickListener: () => void;
 
@@ -54,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getOwnUser();
     loginEmitter.subscribe(() => this.getOwnUser());
     this.checkProfileClick();
+    publicLoginEmitter.subscribe(() => this.login());
   }
 
   checkProfileClick() {
@@ -102,3 +102,5 @@ export class AppComponent implements OnInit, OnDestroy {
 
   protected readonly UserRole = UserRole;
 }
+
+export const publicLoginEmitter = new EventEmitter();

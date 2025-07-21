@@ -1,13 +1,75 @@
-<div class="profile-pic-div">
-    <label class="profile-pic-label" for="profilepic" [style]="{'cursor': editing ? 'pointer' : 'default'}">
-        <img class="profile-pic" [src]="profilePicture">
-        @if (editing) {
-            <div class="edit-profile-div">
-                <mat-icon>edit</mat-icon>
-            </div>
-        }
+<div class="profile-card" *ngIf="user">
+  <div class="profile-picture-section">
+    <label class="profile-pic-label" for="profilepic" [style.cursor]="editing ? 'pointer' : 'default'">
+      <img
+        *ngIf="profilePictureFile"
+        [src]="profilePicture"
+        class="profile-pic-preview"
+        alt="Profilbild" />
+      <app-profile-image *ngIf="!profilePictureFile" [user]="user"></app-profile-image>
+      <div class="edit-icon-overlay" *ngIf="editing">
+        <mat-icon>edit</mat-icon>
+      </div>
     </label>
-    <input [disabled]="!editing" hidden="true" id="profilepic" type="file"
-           accept="application/png, application/webp, application/jpeg"
-           (change)="setProfilePicture($event)">
+    <input
+      hidden
+      id="profilepic"
+      type="file"
+      accept="image/png, image/webp, image/jpeg"
+      [disabled]="!editing"
+      (change)="setProfilePicture($event)" />
+  </div>
+
+  <div class="profile-info-section">
+    <form *ngIf="editing" (ngSubmit)="saveChanges()" class="edit-form">
+      <app-input
+        [placeholder]="'Vorname'"
+        [value]="user.firstName"
+        (textChange)="user.firstName = $event"
+        [required]="true">
+      </app-input>
+
+      <app-input
+        [placeholder]="'Nachname'"
+        [value]="user.lastName"
+        (textChange)="user.lastName = $event"
+        [required]="true">
+      </app-input>
+
+      <app-input
+        [placeholder]="'E-Mail'"
+        [value]="user.email"
+        (textChange)="user.email = $event"
+        [type]="'email'"
+        [required]="true">
+      </app-input>
+
+      <app-input
+        [placeholder]="'Neues Passwort'"
+        [value]="newPassword"
+        (textChange)="newPassword = $event"
+        [type]="'password'">
+      </app-input>
+
+      <app-input
+        [placeholder]="'Passwort bestätigen'"
+        [value]="secondPassword"
+        (textChange)="secondPassword = $event"
+        [type]="'password'">
+      </app-input>
+
+      <div class="button-group">
+        <button [disabled]="getButtonDisabled()" mat-raised-button color="primary" type="submit">Speichern</button>
+        <button mat-stroked-button type="button" (click)="cancelEdit()">Abbrechen</button>
+      </div>
+    </form>
+
+    <div *ngIf="!editing" class="view-mode">
+      <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      <p class="email">{{ user.email }}</p>
+      <p class="role">{{ user.role }}</p>
+
+      <button mat-raised-button color="primary" (click)="editing = true">Bearbeiten</button>
+    </div>
+  </div>
 </div>

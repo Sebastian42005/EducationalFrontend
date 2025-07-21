@@ -16,9 +16,9 @@ import {ClassDto} from "./entities/ClassDto";
 })
 export class ApiService {
 
-  private chatSocket = webSocket(`ws://${address}/chat`)
+  private readonly chatSocket = webSocket(`ws://${address}/chat`)
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private readonly httpClient: HttpClient) {
   }
 
 
@@ -268,9 +268,23 @@ export class ApiService {
 
   createClass(name: string, description: string): Observable<ClassDto> {
     return this.post('/class/create-class', {
-      name,
-      description
+      name: name,
+      description: description
     })
+  }
+
+  setClassImage(id: number, image: File): Observable<{ message: string }> {
+    const formData = new FormData();
+    formData.append('image', image);
+    return this.put<{ message: string }>(`/class/${id}/image`, formData);
+  }
+
+  getClassRoom(id: string): Observable<ClassDto> {
+    return this.get<ClassDto>(`/class/${id}`)
+  }
+
+  getClassRoomTeacher(id: number): Observable<UserDto> {
+    return this.get<UserDto>(`/class/${id}/teacher`)
   }
 
   joinClass(id: number): Observable<ClassDto> {
@@ -278,11 +292,23 @@ export class ApiService {
   }
 
   createRoomCode(id: number): Observable<ClassDto> {
-    return this.put(`/class/create-room-code/${id}`, null)
+    return this.post(`/class/create-room-code/${id}`, null)
+  }
+
+  getClassRoomSubjects(id: number): Observable<SubjectDto[]> {
+    return this.get<SubjectDto[]>(`/class/${id}/subjects`)
   }
 
   getStudentSubjects(): Observable<SubjectDto[]> {
     return this.get<SubjectDto[]>("/class/get-student-subjects")
+  }
+
+  getClassSubjects(id: number): Observable<SubjectDto[]> {
+    return this.get<SubjectDto[]>(`/class/${id}/subjects`)
+  }
+
+  showLessonToStudents(lessonId: number, show: boolean): Observable<ClassDto> {
+    return this.put(`/class/lesson/${lessonId}/show-students/${show}`, null)
   }
 
   getUsersWithWorkshopRequests() {

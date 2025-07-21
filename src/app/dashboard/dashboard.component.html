@@ -3,12 +3,45 @@
   <p class="main-subtitle">{{ subtitle }}</p>
 
   <section class="grid-container">
-    <mat-card *ngFor="let item of navItems" class="dashboard-card" [routerLink]="item.href">
-      <mat-icon [style]="{'color': item.color ? item.color : item.backgroundColor ? 'white' : null, 'background-color': item.backgroundColor}" class="dashboard-icon">{{ item.icon }}</mat-icon>
-      <h3 class="card-title">{{ item.label }}</h3>
-      <p class="card-text">
-        {{ item.sublabel }}
-      </p>
-    </mat-card>
+    @for (item of navItems; track $index) {
+      @if (item != null) {
+        <mat-card (click)="item!.action?.()" class="dashboard-card" [routerLink]="item!.href">
+          <mat-icon
+            [style]="{
+              'color': item!.color ? item!.color : item!.backgroundColor ? 'white' : null,
+              'background-color': item!.backgroundColor
+            }"
+            class="dashboard-icon">{{ item!.icon }}
+          </mat-icon>
+          <h3 class="card-title">{{ item!.label }}</h3>
+          <p class="card-text">
+            {{ item!.sublabel }}
+          </p>
+        </mat-card>
+      }
+    }
+  </section>
+  <section class="button-row">
+    <div class="button-group left">
+      @for (btn of buttonItems; track $index) {
+        @if (btn != null && btn.left) {
+          <button mat-raised-button (click)="btn.action?.()" [style]="btn.primary ? null : 'background-color: white; color: black' " color="primary" [routerLink]="btn.href" class="action-button">
+            <mat-icon class="button-icon">{{ btn.icon }}</mat-icon>
+            <span class="button-label">{{ btn.label }}</span>
+          </button>
+        }
+      }
+    </div>
+
+    <div class="button-group right">
+      @for (btn of buttonItems; track $index) {
+        @if (btn != null && !btn.left) {
+          <button (click)="btn.action?.()" mat-raised-button [style]="btn.primary ? null : 'background-color: white; color: black' " color="primary" [routerLink]="btn.href" class="action-button">
+            <mat-icon class="button-icon">{{ btn.icon }}</mat-icon>
+            <span class="button-label">{{ btn.label }}</span>
+          </button>
+        }
+      }
+    </div>
   </section>
 </main>

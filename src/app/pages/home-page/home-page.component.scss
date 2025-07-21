@@ -63,6 +63,20 @@ footer {
   background-color: $app-primary-color;
   color: white;
 
+  a {
+   color: white;
+
+    &:link, &:visited {
+      color: $app-accent-color;
+      text-decoration: none;
+    }
+
+    &:hover {
+      color: $app-secondary-color;
+      text-decoration: underline;
+    }
+  }
+
   & > * {
     position: relative;
   }

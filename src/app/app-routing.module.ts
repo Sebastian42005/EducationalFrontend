@@ -15,6 +15,14 @@ import {BookWorkshopComponent} from "./pages/workshop/book-workshop/book-worksho
 import {WorkshopChatComponent} from "./pages/workshop/workshop-chat/workshop-chat.component";
 import {ClassRoomListComponent} from "./pages/class-room-list/class-room-list.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {CreateClassRoomComponent} from "./pages/create-class-room/create-class-room.component";
+import {ClassRoomDetailComponent} from "./pages/class-room-detail/class-room-detail.component";
+import { ExploreTeachingUnitsComponent } from "./pages/explore-teaching-units/explore-teaching-units.component";
+import { ProfileComponent } from "./profile/profile.component";
+import { AgbComponent } from "./pages/agb/agb.component";
+import { DatenschutzComponent } from "./pages/datenschutz/datenschutz.component";
+import { TeamComponent } from "./pages/team/team.component";
+import { ProjektComponent } from "./pages/projekt/projekt.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -32,11 +40,20 @@ const routes: Routes = [
   { path: 'admin/subject/:id/edit', component: AdminSubjectEditComponent },
   { path: 'admin/workshop', component: ChatComponent },
   { path: 'class-rooms', component: ClassRoomListComponent },
-  { path: 'teacher-dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'workshop-dashboard', component: DashboardComponent },
   { path: 'modules-dashboard', component: DashboardComponent },
   { path: 'classroom-dashboard', component: DashboardComponent },
+  { path: 'classrooms', component: ClassRoomListComponent },
+  { path: 'classrooms/detail/:id', component: ClassRoomDetailComponent },
+  { path: 'classrooms/create', component: CreateClassRoomComponent },
   { path: 'explore-modules-dashboard', component: DashboardComponent },
+  { path: 'explore-teaching-units', component: ExploreTeachingUnitsComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'agb', component: AgbComponent },
+  { path: 'datenschutz', component: DatenschutzComponent },
+  { path: 'team', component: TeamComponent },
+  { path: 'projekt', component: ProjektComponent },
 ];
 
 @NgModule({

@@ -1,10 +1,9 @@
-import {Component, EventEmitter, inject} from '@angular/core';
-import {primaryColor} from "../../exports/ExportVariables";
-import {ApiService} from "../../service/api/api.service";
-import {MatDialogRef} from "@angular/material/dialog";
-import {showMessageEmitter} from "../../components/popup-info/popup-info.component";
-import {Router} from "@angular/router";
-import {FormBuilder} from "@angular/forms";
+import { Component, EventEmitter } from '@angular/core';
+import { primaryColor } from "../../exports/ExportVariables";
+import { ApiService } from "../../service/api/api.service";
+import { MatDialogRef } from "@angular/material/dialog";
+import { showMessageEmitter } from "../../components/popup-info/popup-info.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -53,8 +52,8 @@ export class LoginComponent {
       })
       if (response.role === "ROLE_ADMIN") {
         this.router.navigate(['/admin']).then();
-      } else if (response.role === "ROLE_TEACHER") {
-        this.router.navigate(['/teacher-dashboard']).then();
+      } else if (response.role === "ROLE_TEACHER" || response.role === "ROLE_STUDENT") {
+        this.router.navigate(['/dashboard']).then();
       } else {
         this.router.navigate(['/home']).then();
       }
